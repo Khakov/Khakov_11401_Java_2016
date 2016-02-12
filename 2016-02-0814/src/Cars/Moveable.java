@@ -9,5 +9,5 @@ import MotorType.Motor;
 public interface Moveable {
     int getMaxSpeed(Motor motor, GearBox gear);
     int getAcceleration(Motor motor, GearBox gear);
-    String doMove();
+    void doMove();
 }

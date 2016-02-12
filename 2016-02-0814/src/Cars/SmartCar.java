@@ -30,16 +30,16 @@ public class SmartCar implements Car, Signalable {
     }
 
     @Override
-    public String turnOnMotor() {
+    public void turnOnMotor() {
         isTurn = true;
         motor.doVoice();
-        return "I am turn on";
+        System.out.println("I am turn on");
     }
 
     @Override
-    public String turnOffMotor() {
+    public void turnOffMotor() {
         isTurn = false;
-        return "I am turn off";
+        System.out.println("I am turn off");
     }
 
     @Override
@@ -53,8 +53,8 @@ public class SmartCar implements Car, Signalable {
     }
 
     @Override
-    public String doMove() {
-        return "I am realy comfort auto";
+    public void doMove() {
+        System.out.println("I am very comfort auto");
     }
 
     @Override
@@ -71,16 +71,17 @@ public class SmartCar implements Car, Signalable {
     }
 
     @Override
-    public String doSignal() {
-        return signal;
+    public void doSignal() {
+        System.out.println(signal);
+
     }
 
     @Override
-    public String getRadar(double distanceToCar, double speedOfCar) {
+    public void getRadar(double distanceToCar, double speedOfCar) {
         if(distanceToCar> 5 & speedOfCar >90)
-            return "Oppps";
+            System.out.println("Oppps");
         else
-            return "Excellent";
+            System.out.println("Excellent");
     }
 }
 

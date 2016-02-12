@@ -29,16 +29,16 @@ public class Lada2101 implements Car {
     }
 
     @Override
-    public String turnOnMotor() {
+    public void turnOnMotor() {
         isTurn = true;
         motor.doVoice();
-        return "I am turn on";
+        System.out.println("I am turn on");
     }
 
     @Override
-    public String turnOffMotor() {
+    public void turnOffMotor() {
         isTurn = false;
-        return "I am turn off";
+        System.out.println("I am turn off");
     }
 
     @Override
@@ -52,8 +52,8 @@ public class Lada2101 implements Car {
     }
 
     @Override
-    public String doMove() {
-        return "Best auto in world";
+    public void doMove() {
+        System.out.println("Best auto in world");
     }
 
     @Override

@@ -5,6 +5,6 @@ package Cars;
  */
 public interface Signalable {
     void signalTurn(boolean signalOn);
-    String doSignal();
-    String getRadar(double distanceToCar, double speedOfCar);
+    void doSignal();
+    void getRadar(double distanceToCar, double speedOfCar);
 }
