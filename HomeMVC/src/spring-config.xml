@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="audiQ7" class="Task006.Cars.AudiQ7"  scope="prototype">
+        <constructor-arg name="motor" ref="electricMotor"/>
+        <constructor-arg name="wheel" ref="winterWheel"/>
+    </bean>
+    <bean id="bmwX5" class="Task006.Cars.BmwX5"  scope="prototype">
+        <constructor-arg name="motor" ref="dieselMotor"/>
+        <constructor-arg name="wheel" ref="summerWheel"/>
+    </bean>
+    <bean id="lada2101" class="Task006.Cars.Lada2101"  scope="prototype">
+        <constructor-arg name="motor" ref="petrolMotor"/>
+        <constructor-arg name="wheel" ref="summerWheel"/>
+    </bean>
+    <bean id="renaultClio" class="Task006.Cars.RenaultClio"  scope="prototype">
+        <constructor-arg name="motor" ref="petrolMotor"/>
+        <constructor-arg name="wheel" ref="summerWheel"/>
+    </bean>
+    <bean id="smartCar" class="Task006.Cars.SmartCar"  scope="prototype">
+        <constructor-arg name="motor" ref="electricMotor"/>
+        <constructor-arg name="wheel" ref="summerWheel"/>
+    </bean>
+    <bean id="mechanicGearBox" class="Task006.GearBox.MechanicGearBox" scope="prototype">
+    </bean>
+    <bean id="robotGearBox" class="Task006.GearBox.RobotGearBox" scope="prototype">
+    </bean>
+    <bean id="dieselMotor" class="Task006.MotorType.DieselMotor" scope="prototype">
+    </bean>
+    <bean id="electricMotor" class="Task006.MotorType.ElectricMotor" scope="prototype">
+    </bean>
+    <bean id="petrolMotor" class="Task006.MotorType.PetrolMotor" scope="prototype">
+    </bean>
+    <bean id="summerWheel" class="Task006.Wheels.SummerWheel" scope="prototype">
+    </bean>
+    <bean id="winterWheel" class="Task006.Wheels.WinterWheel" scope="prototype">
+    </bean>
+
+</beans>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="firstComplexNumber" class="Task009.ComplexNumber">
+        <constructor-arg value="3"/>
+        <constructor-arg value="4"/>
+    </bean>
+    <bean id="secondComplexNumber" class="Task009.ComplexNumber">
+        <constructor-arg value="6"/>
+        <constructor-arg value="7"/>
+    </bean>
+    <bean id="thirdComplexNumber" class="Task009.ComplexNumber">
+        <constructor-arg value="5"/>
+        <constructor-arg value="4"/>
+    </bean>
+    <bean id="fourthComplexNumber" class="Task009.ComplexNumber">
+        <constructor-arg value="4"/>
+        <constructor-arg value="3"/>
+    </bean>
+    <bean id="fifthComplexNumber" class="Task009.ComplexNumber">
+        <constructor-arg value="11"/>
+        <constructor-arg value="11"/>
+    </bean>
+    <bean id="sixthComplexNumber" class="Task009.ComplexNumber">
+        <constructor-arg value="6"/>
+        <constructor-arg value="8"/>
+    </bean>
+    <bean id="seventhComplexNumber" class="Task009.ComplexNumber">
+        <constructor-arg value="8"/>
+        <constructor-arg value="6"/>
+    </bean>
+
+    <bean id="eighthComplexNumber" class="Task009.ComplexNumber">
+        <constructor-arg value="-20"/>
+        <constructor-arg value="108"/>
+    </bean>
+    <bean id="ninthComplexNumber" class="Task009.ComplexNumber">
+        <constructor-arg value="2"/>
+        <constructor-arg value="78"/>
+    </bean>
+    <bean id="tenthComplexNumber" class="Task009.ComplexNumber">
+        <constructor-arg value="16"/>
+        <constructor-arg value="64"/>
+    </bean>
+    <bean id="eleventhComplexNumber" class="Task009.ComplexNumber">
+        <constructor-arg value="-2"/>
+        <constructor-arg value="-34"/>
+    </bean>
+    <bean id="twelfthComplexNumber" class="Task009.ComplexNumber">
+        <constructor-arg value="-5"/>
+        <constructor-arg value="83"/>
+    </bean>
+    <bean id="thirteenthComplexNumber" class="Task009.ComplexNumber">
+        <constructor-arg value="7"/>
+        <constructor-arg value="63"/>
+    </bean>
+    <bean id="firstMatrix" class="Task009.ComplexMatrix2x2">
+        <constructor-arg ref="firstComplexNumber"/>
+        <constructor-arg ref="secondComplexNumber"/>
+        <constructor-arg ref="thirdComplexNumber"/>
+        <constructor-arg ref="fourthComplexNumber"/>
+    </bean>
+    <bean id="secondMatrix" class="Task009.ComplexMatrix2x2">
+        <constructor-arg ref="firstComplexNumber"/>
+        <constructor-arg ref="thirdComplexNumber"/>
+        <constructor-arg ref="secondComplexNumber"/>
+        <constructor-arg ref="fourthComplexNumber"/>
+    </bean>
+    <bean id="thirdMatrix" class="Task009.ComplexMatrix2x2">
+        <constructor-arg ref="sixthComplexNumber"/>
+        <constructor-arg ref="fifthComplexNumber"/>
+        <constructor-arg ref="fifthComplexNumber"/>
+        <constructor-arg ref="seventhComplexNumber"/>
+    </bean>
+    <bean id="fourthMatrix" class="Task009.ComplexMatrix2x2">
+        <constructor-arg ref="eighthComplexNumber"/>
+        <constructor-arg ref="ninthComplexNumber"/>
+        <constructor-arg ref="ninthComplexNumber"/>
+        <constructor-arg ref="tenthComplexNumber"/>
+    </bean>
+
+    <bean id="vector" class="Task009.ComplexVector2D">
+        <constructor-arg ref="firstComplexNumber"/>
+        <constructor-arg ref="thirdComplexNumber"/>
+    </bean>
+
+    <bean id="vector2" class="Task009.ComplexVector2D">
+        <constructor-arg ref="twelfthComplexNumber"/>
+        <constructor-arg ref="thirteenthComplexNumber"/>
+    </bean>
+
+
+</beans>
