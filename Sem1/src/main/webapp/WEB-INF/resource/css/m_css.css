@@ -1,0 +1,7 @@
+.nav-style:hover{
+    background-color: #eeffee;
+}
+.active-nav{
+    background-color: white;
+    color: white;
+}
