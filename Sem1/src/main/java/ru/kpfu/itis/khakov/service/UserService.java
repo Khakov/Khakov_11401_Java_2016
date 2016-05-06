@@ -27,9 +27,10 @@ public class UserService {
     @Transactional
     public void changeUser(Long id, String role, boolean enabled){
         User user = userRepository.findById(id);
+        System.out.println(user);
         user.setEnabled(enabled);
         user.setRole(role);
-//        userRepository.saveAndFlush(user);
+        userRepository.saveAndFlush(user);
     }
    @Transactional
     public void add(User user){

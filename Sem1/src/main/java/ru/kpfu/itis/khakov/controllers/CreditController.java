@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ru.kpfu.itis.khakov.entity.Credit;
 import ru.kpfu.itis.khakov.entity.User;
 import ru.kpfu.itis.khakov.forms.CreditForm;
-import ru.kpfu.itis.khakov.forms.RegistrationForm;
 import ru.kpfu.itis.khakov.service.CarService;
 import ru.kpfu.itis.khakov.service.CreditService;
 import ru.kpfu.itis.khakov.service.StatusService;
@@ -45,14 +44,14 @@ public class CreditController {
         else
             request.setAttribute("creditForm", new CreditForm());
         model.put("cars", carService.getAllCar());
-        return "credit";
+        return "user/credit";
 }
     @RequestMapping(value = "/credit", method = RequestMethod.POST)
     public String setCredit(@Valid @ModelAttribute("creditForm") CreditForm creditForm,
                             BindingResult bindingResult, ModelMap model){
         if (bindingResult.hasErrors()) {
             model.put("cars", carService.getAllCar());
-            return "credit";
+            return "user/credit";
         }
         Credit credit  = new Credit();
 

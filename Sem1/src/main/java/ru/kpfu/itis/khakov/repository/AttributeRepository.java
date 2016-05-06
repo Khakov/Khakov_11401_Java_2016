@@ -10,4 +10,5 @@ import ru.kpfu.itis.khakov.entity.Attribute;
  */
 @Repository
 public interface AttributeRepository extends JpaRepository<Attribute,Long> {
+    Attribute findById(Long id);
 }

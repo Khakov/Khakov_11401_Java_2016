@@ -25,6 +25,8 @@ public class OperatorController {
     RemontService remontService;
     @Autowired
     ResultService resultService;
+    @Autowired
+    MyCarService myCarService;
     @RequestMapping(value = "/credits", method = RequestMethod.GET)
     public String getCredits(ModelMap model) {
         List<Credit> credits = creditService.getCreditByStatus("в обработке");
@@ -36,7 +38,7 @@ public class OperatorController {
         model.put("credits1", credits1);
         model.put("credits2", credits2);
         model.put("credits3", credits3);
-        return "operator_credit";
+        return "operator/operator_credit";
     }
 
     @RequestMapping(value = "/edit_credit/{id}", method = RequestMethod.GET)
@@ -45,7 +47,7 @@ public class OperatorController {
         Credit credit = creditService.getById(id);
         model.put("statuses", statuses);
         model.put("credit", credit);
-        return "edit_credit";
+        return "operator/edit_credit";
     }
 
     @RequestMapping(value = "/edit_credit/{id}", method = RequestMethod.POST)
@@ -63,7 +65,7 @@ public class OperatorController {
         model.put("drives1", drives1);
         model.put("drives2", drives2);
         model.put("drives3", drives3);
-        return "operator_drive";
+        return "operator/operator_drive";
     }
     @RequestMapping(value = "/edit_drive/{id}", method = RequestMethod.GET)
     public String getTestDrive(ModelMap model, @PathVariable("id") Long id) {
@@ -71,7 +73,7 @@ public class OperatorController {
         TestDrive drive = driveService.getById(id);
         model.put("statuses", statuses);
         model.put("drive", drive);
-        return "edit_drive";
+        return "operator/edit_drive";
     }
     @RequestMapping(value = "/edit_drive/{id}", method = RequestMethod.POST)
     public String setTestDrive(ModelMap model, @PathVariable("id") Long id, @RequestParam("status") String status,
@@ -89,7 +91,7 @@ public class OperatorController {
         model.put("remonts1", remonts1);
         model.put("remonts2", remonts2);
         model.put("remonts3", remonts3);
-        return "operator_remont";
+        return "operator/operator_remont";
     }
     @RequestMapping(value = "/edit_remont/{id}", method = RequestMethod.GET)
     public String getRemont(ModelMap model, @PathVariable("id") Long id) {
@@ -97,12 +99,33 @@ public class OperatorController {
         Remont remont = remontService.getById(id);
         model.put("results", results);
         model.put("remont", remont);
-        return "edit_remont";
+        return "operator/edit_remont";
     }
     @RequestMapping(value = "/edit_remont/{id}", method = RequestMethod.POST)
     public String setRemont(ModelMap model, @PathVariable("id") Long id, @RequestParam("status") String status,
                                @RequestParam("date") String date) {
         remontService.changeResult(id, Long.valueOf(status));
         return "redirect:/operator/remont";
+    }
+    @RequestMapping(value="/cars", method = RequestMethod.GET)
+    public String getCars(ModelMap model){
+        List<MyCar> cars1 = myCarService.getByStatus(true);
+        List<MyCar> cars2 = myCarService.getByStatus(false);
+        System.out.println(cars1);
+        model.put("cars2", cars2);
+        model.put("cars1", cars1);
+        return "operator/cars";
+    }
+    @RequestMapping(value = "/edit_car/{id}", method = RequestMethod.GET)
+    public String getCar(@PathVariable("id") Long id, ModelMap model){
+        MyCar car = myCarService.getById(id);
+        model.put("car", car);
+        return "operator/edit_car";
+    }
+    @RequestMapping(value = "/edit_car/{id}", method = RequestMethod.POST)
+    public String getCar(@PathVariable("id") Long id, ModelMap model,
+                         @RequestParam("status") String status){
+        myCarService.changeCar(id, status);
+        return "redirect:/operator/cars";
     }
 }

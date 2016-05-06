@@ -20,29 +20,40 @@ public class CreditService {
     CreditRepository creditRepository;
     @Autowired
     StatusRepository statusRepository;
+
     @Transactional
-    public void saveCredit(Credit credit){
+    public void saveCredit(Credit credit) {
         creditRepository.saveAndFlush(credit);
     }
+
     @Transactional
     public List<Credit> getByUser(User user) {
         return creditRepository.findByUser(user);
     }
+
     @Transactional
     public List<Credit> getByStatus(Status status) {
         return creditRepository.findByStatus(status);
     }
+
     @Transactional
     public Credit getById(Long id) {
         return creditRepository.findById(id);
     }
-    public List<Credit> getCreditByStatus(String status){
+
+    public List<Credit> getCreditByStatus(String status) {
         return creditRepository.findByStatus(statusRepository.findByStatus(status));
     }
-@Transactional
+
+    @Transactional
     public void changeStatus(Long id, Long status) {
         Credit credit = creditRepository.findById(id);
         credit.setStatus(statusRepository.findById(status));
         creditRepository.saveAndFlush(credit);
+    }
+
+    @Transactional
+    public List<Credit> getAll() {
+        return creditRepository.findAll();
     }
 }

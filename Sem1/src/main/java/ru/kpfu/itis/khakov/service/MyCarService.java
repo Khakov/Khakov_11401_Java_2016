@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kpfu.itis.khakov.entity.Attribute;
 import ru.kpfu.itis.khakov.entity.MyCar;
+import ru.kpfu.itis.khakov.entity.User;
 import ru.kpfu.itis.khakov.repository.*;
 
 import java.util.List;
@@ -17,20 +18,49 @@ import java.util.List;
 public class MyCarService {
     @Autowired
     MyCarRepository myCarRepository;
+
     @Transactional
     public void saveCar(MyCar myCar, List<Attribute> attributes) {
         myCarRepository.saveAndFlush(myCar);
         List<MyCar> myCars = myCarRepository.findAllByDate(myCar.getDate());
         System.out.println(myCar.getId());
-        for (MyCar car: myCars){
-//            if (myCar.getUser().equals(car.getUser())){
-//                System.out.println(myCar.getDate());
-                myCar = car;
-//            }
+        for (MyCar car : myCars) {
+            if (myCar.getUser().equals(car.getUser())){
+                System.out.println(myCar.getDate());
+            myCar = car;
+            }
         }
         System.out.println(myCar.getDate());
         myCar.setAttributes(attributes);
         myCarRepository.saveAndFlush(myCar);
-        System.out.println(myCar);
+    }
+
+    @Transactional
+    public List<MyCar> getAll() {
+        return myCarRepository.findAll();
+    }
+
+    @Transactional
+    public List<MyCar> getByStatus(Boolean b) {
+        return myCarRepository.findByStatus(b);
+    }
+
+    @Transactional
+    public MyCar getById(Long id) {
+        return myCarRepository.findById(id);
+    }
+
+    @Transactional
+    public void changeCar(Long id, String status) {
+        Boolean s = true;
+        if (status.equals("0"))
+            s = false;
+        MyCar myCar = myCarRepository.findById(id);
+        myCar.setStatus(s);
+        myCarRepository.saveAndFlush(myCar);
+    }
+@Transactional
+    public List<MyCar> getByUser(User user) {
+    return myCarRepository.findAllByUser(user);
     }
 }

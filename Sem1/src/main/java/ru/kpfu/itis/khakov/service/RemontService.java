@@ -19,25 +19,35 @@ public class RemontService {
     RemontRepository remontRepository;
     @Autowired
     ResultRepository resultRepository;
+
     @Transactional
-    public void saveRemont(Remont remont){
+    public void saveRemont(Remont remont) {
         remontRepository.saveAndFlush(remont);
     }
+
     @Transactional
     public List<Remont> findByUser(User user) {
         return remontRepository.findByUser(user);
     }
+
     @Transactional
     public List<Remont> getByResult(String s) {
         return remontRepository.getByResult(resultRepository.findByResult(s));
     }
+
     @Transactional
     public Remont getById(Long id) {
         return remontRepository.findById(id);
     }
 
+    @Transactional
     public void changeResult(Long id, Long result) {
         Remont remont = remontRepository.findById(id);
         remont.setResult(resultRepository.findById(result));
+    }
+
+    @Transactional
+    public List<Remont> getAll() {
+        return remontRepository.findAll();
     }
 }

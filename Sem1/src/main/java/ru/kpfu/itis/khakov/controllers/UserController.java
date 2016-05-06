@@ -4,14 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import ru.kpfu.itis.khakov.entity.Credit;
-import ru.kpfu.itis.khakov.entity.Remont;
-import ru.kpfu.itis.khakov.entity.TestDrive;
-import ru.kpfu.itis.khakov.entity.User;
-import ru.kpfu.itis.khakov.service.CreditService;
-import ru.kpfu.itis.khakov.service.RemontService;
-import ru.kpfu.itis.khakov.service.TestDriveService;
-import ru.kpfu.itis.khakov.service.UserService;
+import ru.kpfu.itis.khakov.entity.*;
+import ru.kpfu.itis.khakov.service.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -31,6 +25,10 @@ public class UserController {
     TestDriveService driveService;
     @Autowired
     RemontService remontService;
+    @Autowired
+    MyCarService myCarService;
+    @Autowired
+    PageService pageService;
     @RequestMapping(value = "/profile")
     public String getProfile(ModelMap model){
         User user = userService.getByLogin(request.getUserPrincipal().getName());
@@ -47,19 +45,15 @@ public class UserController {
         List<Remont> remonts = remontService.findByUser(user);
         if(!remonts.isEmpty())
             model.put("remonts",remonts);
-        return "profile";
+        List<MyCar> cars = myCarService.getByUser(user);
+        model.put("cars", cars);
+        return "user/profile";
     }
-
-    @RequestMapping(value="/", method = RequestMethod.GET)
-    public String getMainPage(){
-        return "main";
-    }
-
 
     @RequestMapping(value="/users", method = RequestMethod.GET)
     String get(ModelMap model){
         model.put("users", userService.getAllUsers());
-        return "users";
+        return "admin/users";
     }
     @RequestMapping(value="/user", method = RequestMethod.GET)
     @ResponseBody List<User> getUser(@RequestParam("q") String q){
@@ -85,14 +79,14 @@ public class UserController {
     public String getThisUser(@PathVariable("id") Long id, ModelMap model){
         User user = userService.getById(id);
         if(user==null)
-            return "404_error";
+            return "ErrorPages/404_error";
         else {
             model.put("user", user);
         }
-        return "edit_user";
+        return "admin/edit_user";
     }
     @RequestMapping(value="/edit_user/{id}", method = RequestMethod.POST)
-    public String editUser(@RequestParam("id") Long id, @RequestParam("role") String role,
+    public String editUser(@PathVariable("id") Long id, @RequestParam("role") String role,
                            @RequestParam("enabled") boolean enabled, ModelMap model ) {
         userService.changeUser(id,role,enabled);
         model.put("users", userService.getAllUsers());

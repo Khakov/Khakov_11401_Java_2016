@@ -1,6 +1,4 @@
-<#ftl/>
-<#import "spring.ftl" as spring />
-<#include "template.ftl">
+<#include "templates/template.ftl">
 <@mainTemplate title="Registration" body = "style='background:#F7F7F7'"/>
 <#macro m_body>
 <div class="">

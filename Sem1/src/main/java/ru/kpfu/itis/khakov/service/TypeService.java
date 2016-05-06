@@ -15,12 +15,19 @@ import java.util.List;
 public class TypeService {
     @Autowired
     TypeRepository typeRepository;
+
     @Transactional
     public List<Type> getAllTypes() {
         return typeRepository.findAll();
     }
+
     @Transactional
     public Type getById(Long id) {
         return typeRepository.findById(id);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        typeRepository.delete(typeRepository.findById(id));
     }
 }

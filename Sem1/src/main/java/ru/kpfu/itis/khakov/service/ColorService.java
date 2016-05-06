@@ -25,4 +25,14 @@ public class ColorService {
     public Color getById(Long id) {
         return colorRepository.findById(id);
     }
+
+    @Transactional
+    public void addColor(Color color) {
+        colorRepository.saveAndFlush(color);
+    }
+
+    @Transactional
+    public void deleteColor(Long id) {
+        colorRepository.delete(colorRepository.findById(id));
+    }
 }

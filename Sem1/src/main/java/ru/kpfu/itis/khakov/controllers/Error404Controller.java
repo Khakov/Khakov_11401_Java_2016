@@ -14,6 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class Error404Controller {
     @RequestMapping
     public String getErrorPage(@ModelAttribute("model") ModelMap model){
-        return "404_error";
+        return "ErrorPages/404_error";
     }
 }

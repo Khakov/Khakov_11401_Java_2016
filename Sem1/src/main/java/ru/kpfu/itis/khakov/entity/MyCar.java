@@ -16,6 +16,7 @@ public class MyCar {
     private Car car;
     private List<Attribute> attributes;
     private Date date;
+    private Boolean status;
 
     public MyCar() {
     }
@@ -51,6 +52,14 @@ public class MyCar {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     public User getUser() {
         return user;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+    @Column(name = "status")
+    public Boolean getStatus() {
+        return status;
     }
 
     @ManyToOne

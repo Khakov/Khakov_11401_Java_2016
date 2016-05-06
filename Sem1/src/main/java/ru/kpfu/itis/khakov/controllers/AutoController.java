@@ -1,23 +1,21 @@
 package ru.kpfu.itis.khakov.controllers;
 
-import com.sun.deploy.net.HttpResponse;
+import com.itextpdf.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.kpfu.itis.khakov.entity.*;
-import ru.kpfu.itis.khakov.forms.CreditForm;
-import ru.kpfu.itis.khakov.forms.RemontForm;
-import ru.kpfu.itis.khakov.forms.TestDirveForm;
+import ru.kpfu.itis.khakov.forms.*;
 import ru.kpfu.itis.khakov.service.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Rus on 02.05.2016.
@@ -48,21 +46,27 @@ public class AutoController {
     AttributesService attributesService;
     @Autowired
     ColorService colorService;
+    @Autowired
+    PdfCreator pdfCreator;
+    @Autowired
+    PageService pageService;
     @RequestMapping(value = "/catalog", method = RequestMethod.GET)
     public String autoCatalog(ModelMap model) {
         List<Car> cars = carService.getAllCar();
         model.put("cars", cars);
-        return "catalog";
+        return "user/catalog";
     }
 
     @RequestMapping(value = "/car/{id}", method = RequestMethod.GET)
     public String getCar(ModelMap model, @PathVariable("id") Long id) {
         Car car = carService.getById(id);
         if (car == null)
-            return "404_error";
+            return "ErrorPages/404_error";
+        model.put("pages",pageService.getByCar(car));
         model.put("attributes", attributes.getAll());
         model.put("car", car);
-        return "car";
+        model.put("length", pageService.getByCar(car).size());
+        return "user/car";
     }
 
     @RequestMapping(value = "/test_drive", method = RequestMethod.GET)
@@ -76,20 +80,18 @@ public class AutoController {
         }
         request.setAttribute("driveForm", form);
         model.put("cars", carService.getAllCar());
-        return "test_drive";
+        return "user/test_drive";
     }
     @RequestMapping(value = "/test_drive", method = RequestMethod.POST)
     public String setTestDrive(@Valid  @ModelAttribute("driveForm") TestDirveForm driveForm,
                                BindingResult bindingResult, ModelMap model) {
         if (bindingResult.hasErrors()) {
             model.put("cars", carService.getAllCar());
-            return "test_drive";
+            return "user/test_drive";
         }
         TestDrive drive = new TestDrive();
         drive.setNumber(driveForm.getNumber());
-        String[] dates = driveForm.getDate().split("/");
-        String date = dates[1] + "." + dates[0] + "." + dates[2];
-        drive.setDate(date);
+        drive.setDate(driveForm.getDate());
         drive.setName(driveForm.getFirstName());
         drive.setCar(carService.getById(Long.valueOf(driveForm.getId())));
         drive.setStatus(statusService.getByStatus("в обработке"));
@@ -116,7 +118,7 @@ public class AutoController {
         request.setAttribute("remontForm", form);
         model.put("cars", carService.getAllCar());
         model.put("types", typeService.getAllTypes());
-        return "remont";
+        return "user/remont";
     }
     @RequestMapping(value = "/remont", method = RequestMethod.POST)
     public String setRemontForm(@Valid  @ModelAttribute("remontForm") RemontForm form,
@@ -124,7 +126,7 @@ public class AutoController {
         if (bindingResult.hasErrors()) {
             model.put("cars", carService.getAllCar());
             model.put("types", typeService.getAllTypes());
-            return "remont";
+            return "user/remont";
         }
         Remont remont = new Remont();
         remont.setNumber(form.getNumber());
@@ -141,10 +143,7 @@ public class AutoController {
         request.setAttribute("remont", remont);
         return "redirect:/success_credix";
     }
-//    @RequestMapping(value = "/success_remont", method = RequestMethod.GET)
-//    public String getSuccessRemont(){
-//        return "success_remont";
-//    }
+
     @RequestMapping(value="/add_my_car", method = RequestMethod.GET)
     public String getAuto(ModelMap model){
         if (request.getUserPrincipal() != null) {
@@ -154,7 +153,7 @@ public class AutoController {
         model.put("cars",carService.getAllCar());
         model.put("attributes", attributesService.getAll());
         model.put("colors", colorService.getAll());
-        return "add_my_car";
+        return "user/add_my_car";
     }
     @RequestMapping(value="/add_my_car", method = RequestMethod.POST)
     public String setAuto(ModelMap model, @RequestParam("color") String color,
@@ -165,12 +164,11 @@ public class AutoController {
         myCar.setColor(color1);
         myCar.setCar(car1);
         myCar.setDate(new Date(new java.util.Date().getTime()));
+        myCar.setStatus(false);
         List<Attribute> attributes = new ArrayList<Attribute>();
-        Long id = 1L;
         if (request.getUserPrincipal() != null) {
             User user = userService.getByLogin(request.getUserPrincipal().getName());
             myCar.setUser(user);
-            id = user.getId();
         }
         for(Attribute attribute: attributesService.getAll()){
             if("on".equals(request.getParameter("attribute" + attribute.getId()))){
@@ -179,10 +177,20 @@ public class AutoController {
         }
         myCarService.saveCar(myCar, attributes);
         request.getSession().setAttribute("myCar",myCar);
-        return "redirect:/document/" + id;
+        return "redirect:/success_auto";
     }
-    @RequestMapping(value = "/document/{id}", method = RequestMethod.POST)
-    public String getPdf(){
-        return "document";
+    @RequestMapping(value = "/success_auto", method = RequestMethod.GET)
+    public String getSuccessPage(){
+        return "success_auto";
     }
+    @RequestMapping(value = "/document", method = RequestMethod.GET, produces = "application/pdf")
+    @ResponseBody
+    public FileSystemResource getPdf()throws DocumentException, IOException {
+        MyCar myCar = myCarService.getById(7L);
+        if(request.getSession().getAttribute("myCar")!=null)
+             myCar = (MyCar) request.getSession().getAttribute("myCar");
+        String filePath = pdfCreator.pdfCreate(myCar);
+        return new FileSystemResource(filePath);
+    }
+
 }

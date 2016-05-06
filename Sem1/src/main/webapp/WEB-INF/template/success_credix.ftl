@@ -1,5 +1,4 @@
-<#import "spring.ftl" as spring />
-<#include "user_temp.ftl">
+<#include "templates/user_temp.ftl">
 <@mainTemplate title="credit" body = "class='nav'"/>
 <#macro m_body>
 <div class="right_col" role="main">

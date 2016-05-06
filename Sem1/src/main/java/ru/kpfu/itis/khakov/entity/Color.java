@@ -63,4 +63,9 @@ public class Color {
         result = 31 * result + (colorEn != null ? colorEn.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return colorRu;
+    }
 }

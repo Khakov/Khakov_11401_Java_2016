@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kpfu.itis.khakov.entity.Car;
+import ru.kpfu.itis.khakov.entity.CarManufacture;
+import ru.kpfu.itis.khakov.entity.Model;
 import ru.kpfu.itis.khakov.repository.CarRepository;
 
 import java.util.List;
@@ -15,12 +17,34 @@ import java.util.List;
 public class CarService {
     @Autowired
     CarRepository carRepository;
+
     @Transactional
     public List<Car> getAllCar() {
         return carRepository.findAll();
     }
+
     @Transactional
-    public Car getById(Long id){
+    public Car getById(Long id) {
         return carRepository.findById(id);
+    }
+
+    @Transactional
+    public void editCar(Car car, CarManufacture manufacture, Model carModel, Integer price, double kof) {
+        car.setManufacture(manufacture);
+        car.setModel(carModel);
+        car.setPrice(price);
+        car.setKof(kof);
+        carRepository.saveAndFlush(car);
+    }
+
+    @Transactional
+    public void addCar(Car car) {
+        carRepository.saveAndFlush(car);
+    }
+
+    @Transactional
+    public void deleteCar(Long id) {
+        Car car = carRepository.findById(id);
+        carRepository.delete(car);
     }
 }
