@@ -23,18 +23,15 @@
                 <div class="clearfix"></div>
                 <div class="separator">
 
-                    <p class="change_link">New to site?
-                        <a href="/registration" class="to_register"> Create Account </a>
+                    <p class="change_link">Впервые на нашем сайте?
+                        <a href="/registration" class="to_register"><i class="fa fa-registered"></i>Зарегестрироваться</a>
                     </p>
-                <#--<@security.authorize access="isAuthenticated()">-->
-                <#--<a href="/logout">Logout</a>-->
-                <#--</@security.authorize>-->
                     <div class="clearfix"></div>
                     <br/>
                     <div>
-                        <h1><i class="fa fa-paw" style="font-size: 26px;"></i> Audi Autosalon</h1>
+                        <h1><i class="fa fa-car" style="font-size: 26px;"></i> Audi Autosalon</h1>
 
-                        <p>©2015 All Rights Reserved. Khan☺</p>
+                        <p>©2016 All Rights Reserved.</p>
                     </div>
                 </div>
             </form>

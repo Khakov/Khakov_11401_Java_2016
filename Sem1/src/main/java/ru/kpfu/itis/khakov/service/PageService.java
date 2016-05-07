@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class PageService {
     @Autowired
-    PageRepository pageRepository;
+    public PageRepository pageRepository;
     public List<Page> getByCar(Car car){
         return pageRepository.findByCar(car);
     }

@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class ModelService {
     @Autowired
-    ModelRepository modelRepository;
+    public ModelRepository modelRepository;
     @Transactional
     public Model getById(Long id) {
         return modelRepository.findById(id);

@@ -5,17 +5,21 @@ import ru.kpfu.itis.khakov.entity.Car;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * Created by Rus on 03.05.2016.
  */
 public class CreditForm {
     @NotEmpty(message = "Поле обязательно для заполнения")
+    @Size(max = 20, message = "не больше 20 символов")
     private String firstName;
     @NotEmpty(message = "Поле обязательно для заполнения")
+    @Size(min = 3, max = 13, message = "Введите верный номер телефона")
     @Pattern(regexp = "(\\+7|8)(\\d{10})", message = "неправильно введен номер")
     private String number;
     @NotEmpty(message = "Поле обязательно для заполнения")
+    @Size(max = 20, message = "не больше 20 символов")
     private String id;
 
     public CreditForm() {

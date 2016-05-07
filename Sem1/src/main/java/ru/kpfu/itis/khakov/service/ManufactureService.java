@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class ManufactureService {
     @Autowired
-    ManufactureRepository manufactureRepository;
+    public ManufactureRepository manufactureRepository;
     @Transactional
     public List<CarManufacture>  getAll(){
         return manufactureRepository.findAll();

@@ -13,48 +13,50 @@
                     <div class="left"></div>
                     <div class="right">
                         <span class="count_top"><i class="fa fa-user"></i> всего пользователей</span>
-                        <div class="count">${all_users.size()}</div>
+                        <div class="count">${all_users}</div>
                         <span class="count_bottom"><i class="green">4% </i> From last Week</span>
                     </div>
                 </div>
                 <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
                     <div class="left"></div>
                     <div class="right">
-                        <span class="count_top"><i class="fa fa-clock-o"></i> Количество заявок на кредит</span>
-                        <div class="count">${all_credits.size()}</div>
+                        <span class="count_top"><i class="fa fa-clock-o"></i> заявок на кредит</span>
+                        <div class="count">${all_credits}</div>
                         <span class="count_bottom"><i class="green">
                     </div>
                 </div>
                 <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
                     <div class="left"></div>
                     <div class="right">
-                        <span class="count_top"><i class="fa fa-automobile"></i> Заявки на ремонт</span>
-                        <div class="count green"> ${all_remonts.size()}</div>
+                        <span class="count_top"><i class="fa fa-automobile"></i> Заявjr на ремонт</span>
+                        <div class="count green"> ${all_remonts}</div>
                         <span class="count_bottom"><i class="green">
                     </div>
                 </div>
                 <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
                     <div class="left"></div>
                     <div class="right">
-                        <span class="count_top"><i class="fa fa-edit"></i> не обработанныхзаявок на кредит</span>
-                        <div class="count">${credits.size()} </div>
+                        <span class="count_top"><i class="fa fa-edit"></i> очередь на кредит</span>
+                        <span class="count_bottom"><i class="red">
+                            <div class="count">${credits} </div>
+                        </span></i>
                     </div>
                 </div>
                 <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
                     <div class="left"></div>
                     <div class="right">
-                        <span class="count_top"><i class="fa fa-automobile"></i>не обработанныхзаявок на ремонт</span>
-                        <div class="count">${remonts_no.size()}</div>
+                        <span class="count_top"><i class="fa fa-automobile"></i>очередь на ремонт</span>
+                        <div class="count">${remonts_no}</div>
+                        <span class="count_bottom"><i class="red">
                     </div>
                 </div>
                 <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
                     <div class="left"></div>
                     <div class="right">
-                        <span class="count_top"><i class="fa fa-automobile"></i>обработанные заявки на ремонт</span>
-                        <div class="count">${remonts_yes.size()}</div>
+                        <span class="count_top"><i class="fa fa-automobile"></i>успешный ремонт</span>
+                        <div class="count">${remonts_yes}</div>
                     </div>
                 </div>
-
             </div>
             <!-- /top tiles -->
         </div>

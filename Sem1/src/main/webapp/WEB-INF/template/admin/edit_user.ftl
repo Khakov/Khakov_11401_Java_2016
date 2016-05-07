@@ -15,29 +15,29 @@
                             </div>
                             <div class="x_content">
                                 <br/>
-                                <form action="/edit_user/${user.getId()}" method="post"
+                                <form action="/edit_user/${user_id.getId()}" method="post"
                                       class="form-horizontal form-label-left input_mask">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                                         <input name="firstName" class="form-control has-feedback-left"
-                                               readonly="readonly" value="${user.getFirstName()}"/>
+                                               readonly="readonly" value="${user_id.getFirstName()}"/>
                                         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                                     </div>
 
                                     <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                                         <input name="lastName" readonly="readonly" class="form-control"
-                                               value="${user.getLastName()}"/>
+                                               value="${user_id.getLastName()}"/>
                                         <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                                     </div>
 
                                     <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                                         <input name="email" readonly="readonly" class="form-control has-feedback-left"
-                                               value="${user.getLogin()}"/>
+                                               value="${user_id.getLogin()}"/>
                                         <span class="fa fa-envelope form-control-feedback left"
                                               aria-hidden="true"></span>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                                        <input name="number" class="form-control" value="${user.getNumber()}"
+                                        <input name="number" class="form-control" value="${user_id.getNumber()}"
                                                readonly="readonly"/>
                                         <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
                                     </div>
@@ -45,13 +45,13 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">role</label>
                                         <select name="role" class="form-control">
-                                            <option value="ROLE_ADMIN" <#if user.getRole()=="ROLE_ADMIN">selected</#if>>
+                                            <option value="ROLE_ADMIN" <#if user_id.getRole()=="ROLE_ADMIN">selected</#if>>
                                                 ROLE_ADMIN
                                             </option>
-                                            <option value="ROLE_USER" <#if user.getRole()=="ROLE_USER">selected</#if>>
+                                            <option value="ROLE_USER" <#if user_id.getRole()=="ROLE_USER">selected</#if>>
                                                 ROLE_USER
                                             </option>
-                                            <option value="ROLE_OPERATOR" <#if user.getRole()=="ROLE_OPERATOR">selected</#if>>
+                                            <option value="ROLE_OPERATOR" <#if user_id.getRole()=="ROLE_OPERATOR">selected</#if>>
                                                 ROLE_OPERATOR
                                             </option>
                                         </select>
@@ -61,8 +61,8 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Disabled Input </label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
                                     <select name="enabled" class="form-control">
-                                        <option value="true" <#if user.isEnabled()==true>selected</#if>>enable</option>
-                                        <option value="false" <#if user.isEnabled()==false>selected</#if>>
+                                        <option value="true" <#if user_id.isEnabled()==true>selected</#if>>enable</option>
+                                        <option value="false" <#if user_id.isEnabled()==false>selected</#if>>
                                             ban<span class="fa fa-ban"></span></option>
                                     </select>
                                 </div>

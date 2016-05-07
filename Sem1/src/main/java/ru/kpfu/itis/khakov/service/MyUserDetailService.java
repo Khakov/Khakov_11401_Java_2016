@@ -17,7 +17,7 @@ import ru.kpfu.itis.khakov.repository.UserRepository;
 @Component
 public class MyUserDetailService implements UserDetailsService {
     @Autowired
-    UserService userService;
+    public UserService userService;
     @Transactional
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         User user = userService.getByLogin(login);

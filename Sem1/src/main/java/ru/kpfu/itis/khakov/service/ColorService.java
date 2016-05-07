@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class ColorService {
     @Autowired
-    ColorRepository colorRepository;
+    public ColorRepository colorRepository;
 
     @Transactional
     public List<Color> getAll() {
@@ -27,8 +27,8 @@ public class ColorService {
     }
 
     @Transactional
-    public void addColor(Color color) {
-        colorRepository.saveAndFlush(color);
+    public Color addColor(Color color) {
+       return colorRepository.saveAndFlush(color);
     }
 
     @Transactional

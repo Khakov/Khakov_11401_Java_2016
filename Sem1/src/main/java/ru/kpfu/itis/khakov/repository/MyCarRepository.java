@@ -13,8 +13,6 @@ import java.util.List;
  */
 @Repository
 public interface MyCarRepository extends JpaRepository<MyCar, Long> {
-    List<MyCar> findByDate(Date date);
-
     List<MyCar> findAllByDate(Date date);
     List<MyCar> findByStatus(Boolean b);
 

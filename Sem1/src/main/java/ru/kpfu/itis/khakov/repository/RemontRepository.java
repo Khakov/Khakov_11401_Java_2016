@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 public interface RemontRepository extends JpaRepository<Remont, Long> {
     List<Remont> findByUser(User user);
-    List<Remont> getByResult(Result result);
+    List<Remont> findByResult(Result result);
     Remont findById(Long id);
 }

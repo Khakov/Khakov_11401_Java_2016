@@ -48,12 +48,12 @@ public class AdminController {
         List<Remont> remonts = remontService.getByResult("в обработке");
         List<Remont> remonts1 = remontService.getByResult("проблема решена");
         List<Remont> remonts2 = remontService.getAll();
-        model.put("all_users", users);
-        model.put("all_credits", credits1);
-        model.put("credits", credits);
-        model.put("all_remonts", remonts2);
-        model.put("remonts_no", remonts);
-        model.put("remonts_yes", remonts1);
+        model.put("all_users", users.size());
+        model.put("all_credits", credits1.size());
+        model.put("credits", credits.size());
+        model.put("all_remonts", remonts2.size());
+        model.put("remonts_no", remonts.size());
+        model.put("remonts_yes", remonts1.size());
         return "admin/admin";
     }
 
@@ -135,14 +135,14 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/add_color", method = RequestMethod.POST)
-    public String editColor(@Valid @ModelAttribute("colorForm") ColorForm form, BindingResult bindingResult, ModelMap model) {
+    public String editColor(@Valid @ModelAttribute("colorForm") ColorForm colorForm, BindingResult bindingResult, ModelMap model) {
         if (bindingResult.hasErrors()) {
             model.put("colors", colorService.getAll());
             return "admin/colors";
         }
         Color color = new Color();
-        color.setColorRu(form.getColorRu());
-        color.setColorEn(form.getColorEn());
+        color.setColorRu(colorForm.getColorRu());
+        color.setColorEn(colorForm.getColorEn());
         colorService.addColor(color);
         return "redirect:/admin/colors";
     }
@@ -159,12 +159,13 @@ public class AdminController {
         return "admin/type_remont";
     }
     @RequestMapping(value = "/add_remont", method = RequestMethod.POST)
-    public String addRemontType(@Valid @RequestParam("typeForm") TypeForm form,
+    public String addRemontType(@Valid @ModelAttribute("typeForm") TypeForm typeForm,
                                 BindingResult bindingResult, ModelMap model){
         if (bindingResult.hasErrors()) {
             model.put("types", typeService.getAllTypes());
             return "admin/type_remont";
         }
+        typeService.add(typeForm.getType());
         return "redirect:/admin/remonts";
     }
     @RequestMapping(value = "/delete_remont/{id}", method = RequestMethod.POST)
@@ -179,12 +180,14 @@ public class AdminController {
         return "admin/attributes";
     }
     @RequestMapping(value = "/add_attribute", method = RequestMethod.POST)
-    public String addAttrType(@Valid @RequestParam("attrForm") AttributeForm form,
+    public String addAttrType(@Valid @RequestParam("attrForm") AttributeForm attrForm,
                                 BindingResult bindingResult, ModelMap model){
         if (bindingResult.hasErrors()) {
             model.put("attributes", attributesService.getAll());
             return "admin/attributes";
         }
+        attributesService.addAttribute(attrForm.getAttribute(), attrForm.getDescription(),
+                attrForm.getPrice());
         return "redirect:/admin/attributes";
     }
     @RequestMapping(value = "/delete_attribute/{id}", method = RequestMethod.POST)

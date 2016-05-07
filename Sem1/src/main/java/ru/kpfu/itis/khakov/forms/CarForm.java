@@ -2,23 +2,24 @@ package ru.kpfu.itis.khakov.forms;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 /**
  * Created by Rus on 05.05.2016.
  */
 public class CarForm {
     @NotEmpty(message = "Поле обязательно для заполнения")
+    @Size(max = 50, message = "не больше 50 символов")
     private String manufacture;
     @NotEmpty(message = "Поле обязательно для заполнения")
+    @Size(max = 50, message = "не больше 50 символов")
     private String model;
     @NotEmpty(message = "Поле обязательно для заполнения")
+    @Size(max = 50, message = "не больше 50 символов")
     private String kof;
     @NotNull(message = "поле обязательно для заполнения")
     @Min(value = 1000000, message = "авто должно стоить больше 1 млн. рублей")
+    @Max(value = 20000000, message = "авто не может стоить больше 20 млн. рублей")
     private Integer price;
     public CarForm(){};
 

@@ -3,21 +3,27 @@ package ru.kpfu.itis.khakov.forms;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * Created by Rus on 04.05.2016.
  */
 public class RemontForm {
     @NotEmpty(message = "Поле обязательно для заполнения")
+    @Size(max = 50, message = "не больше 50 символов")
     private String firstName;
     @NotEmpty(message = "Поле обязательно для заполнения")
+    @Size(min = 3, max = 13, message = "Введите верный номер телефона")
     @Pattern(regexp = "(\\+7|8)(\\d{10})", message = "неправильно введен номер")
     private String number;
     @NotEmpty(message = "Поле обязательно для заполнения")
+    @Size(max = 50, message = "не больше 50 символов")
     private String id;
     @NotEmpty(message = "Заполните описание проблемы")
+    @Size(max = 250, message = "не больше 250 символов")
     private String description;
     @NotEmpty(message = "Поле обязательно для заполнения")
+    @Size(max = 50, message = "не больше 50 символов")
     private String type;
     public RemontForm() {
     }

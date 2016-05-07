@@ -50,7 +50,8 @@
                                                 <a href="/admin/edit_car/${car.getId()}" class="btn btn-info btn-xs">
                                                     <i class="fa fa-pencil"></i> изменить </a>
                                                 <form action="/admin/delete_car/${car.getId()}" method="post">
-                                                <button onclick="return confirm('вы уверены, что хотите удалить это авто?')" type="submit" class="btn btn-danger btn-xs">
+                                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                                    <button onclick="return confirm('вы уверены, что хотите удалить это авто?')" type="submit" class="btn btn-danger btn-xs">
                                                     <i class="fa fa-trash-o"></i> удалить </button>
                                                 </form>
                                             </td>

@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class StatusService {
     @Autowired
-    StatusRepository statusRepository;
+    public StatusRepository statusRepository;
     @Transactional
     public Status getByStatus(String status){
         return statusRepository.findByStatus(status);
@@ -23,7 +23,7 @@ public class StatusService {
     public List<Status> getAll() {
         return statusRepository.findAll();
     }
-@Transactional
+    @Transactional
     public Status getById(Long id) {
         return statusRepository.findById(id);
     }

@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class CarService {
     @Autowired
-    CarRepository carRepository;
+    public CarRepository carRepository;
 
     @Transactional
     public List<Car> getAllCar() {
@@ -29,17 +29,17 @@ public class CarService {
     }
 
     @Transactional
-    public void editCar(Car car, CarManufacture manufacture, Model carModel, Integer price, double kof) {
+    public Car editCar(Car car, CarManufacture manufacture, Model carModel, Integer price, double kof) {
         car.setManufacture(manufacture);
         car.setModel(carModel);
         car.setPrice(price);
         car.setKof(kof);
-        carRepository.saveAndFlush(car);
+        return carRepository.saveAndFlush(car);
     }
 
     @Transactional
-    public void addCar(Car car) {
-        carRepository.saveAndFlush(car);
+    public Car addCar(Car car) {
+        return carRepository.saveAndFlush(car);
     }
 
     @Transactional

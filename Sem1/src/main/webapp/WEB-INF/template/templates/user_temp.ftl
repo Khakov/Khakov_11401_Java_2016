@@ -36,9 +36,14 @@
                         <li class="<#if uri =="/credit">active-nav</#if>"><a href="/credit"><i class="fa fa-bank"></i> заявка на кредит</a></li>
                         <li class="<#if uri =="/test_drive">active-nav</#if>"><a href="/test_drive"><i class="fa fa-edit"></i> заяка на тест драйв</a></li>
                         <li class="<#if uri =="/remont">active-nav</#if>"><a href="/remont"><i class="fa fa-edit"></i> заяка на ремонт</a></li>
+                        <#if user??>
                         <li class="<#if uri =="/profile">active-nav</#if>"><a href="/profile"><i class="fa fa-newspaper-o"></i>профиль</a></li>
-                        <li class="<#if uri =="/login">active-nav</#if>"><a href="/login"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                        <li class="<#if uri =="/login">active-nav</#if>"><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                         </li>
+                        </#if>
+                        <#if !user??>
+                        <li class="<#if uri =="/login">active-nav</#if>"><a href="/login"><i class="fa fa-sign-out pull-right"></i> Log In</a></li>
+                        </#if>
                     </ul>
                 </nav>
             </div>

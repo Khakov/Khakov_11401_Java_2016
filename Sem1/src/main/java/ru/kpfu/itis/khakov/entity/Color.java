@@ -13,6 +13,8 @@ public class Color {
     private String colorEn;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "color_id_seq")
+    @SequenceGenerator(name = "color_id_seq", sequenceName = "color_id_seq", allocationSize = 1)
     @Column(name = "id")
     public Long getId() {
         return id;

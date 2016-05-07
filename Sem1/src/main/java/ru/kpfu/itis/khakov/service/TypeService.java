@@ -30,4 +30,11 @@ public class TypeService {
     public void delete(Long id) {
         typeRepository.delete(typeRepository.findById(id));
     }
+
+    @Transactional
+    public void add(String type) {
+        Type type1 = new Type();
+        type1.setType(type);
+        typeRepository.saveAndFlush(type1);
+    }
 }

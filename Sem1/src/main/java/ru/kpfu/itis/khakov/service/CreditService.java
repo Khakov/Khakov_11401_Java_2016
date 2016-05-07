@@ -17,13 +17,13 @@ import java.util.List;
 @Service
 public class CreditService {
     @Autowired
-    CreditRepository creditRepository;
+    public CreditRepository creditRepository;
     @Autowired
-    StatusRepository statusRepository;
+    public StatusRepository statusRepository;
 
     @Transactional
-    public void saveCredit(Credit credit) {
-        creditRepository.saveAndFlush(credit);
+    public Credit saveCredit(Credit credit) {
+        return creditRepository.saveAndFlush(credit);
     }
 
     @Transactional
@@ -46,10 +46,10 @@ public class CreditService {
     }
 
     @Transactional
-    public void changeStatus(Long id, Long status) {
+    public Credit changeStatus(Long id, Long status) {
         Credit credit = creditRepository.findById(id);
         credit.setStatus(statusRepository.findById(status));
-        creditRepository.saveAndFlush(credit);
+       return creditRepository.saveAndFlush(credit);
     }
 
     @Transactional

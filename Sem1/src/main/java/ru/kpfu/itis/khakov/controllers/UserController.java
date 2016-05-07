@@ -81,7 +81,7 @@ public class UserController {
         if(user==null)
             return "ErrorPages/404_error";
         else {
-            model.put("user", user);
+            model.put("user_id", user);
         }
         return "admin/edit_user";
     }

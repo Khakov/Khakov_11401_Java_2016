@@ -34,12 +34,12 @@ public class User implements UserDetails {
     }
 
     public User(String firstName, String lastName, String login, String password, String role){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.login = login;
-        this.password = password;
-        this.role = role;
-        this.enabled = true;
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setLogin(login);
+        this.setPassword(password);
+        this.setRole(role);
+        this.setEnabled(true);
     }
     public User(){}
     public User(String login, String password){

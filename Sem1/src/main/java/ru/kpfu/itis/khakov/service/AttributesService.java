@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class AttributesService {
     @Autowired
-    AttributeRepository attributeRepository;
+    public AttributeRepository attributeRepository;
 
     @Transactional
     public List<Attribute> getAll() {
@@ -22,7 +22,21 @@ public class AttributesService {
     }
 
     @Transactional
+    public Attribute getById(Long id) {
+        return attributeRepository.findById(id);
+    }
+
+    @Transactional
     public void delete(Long id) {
         attributeRepository.delete(attributeRepository.findById(id));
+    }
+
+    @Transactional
+    public Attribute addAttribute(String attribute, String description, Integer price) {
+        Attribute attribute1 = new Attribute();
+        attribute1.setName(attribute);
+        attribute1.setPrice(price);
+        attribute1.setDescription(description);
+        return attributeRepository.saveAndFlush(attribute1);
     }
 }

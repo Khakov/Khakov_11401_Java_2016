@@ -16,13 +16,13 @@ import java.util.List;
 @Service
 public class RemontService {
     @Autowired
-    RemontRepository remontRepository;
+    public RemontRepository remontRepository;
     @Autowired
-    ResultRepository resultRepository;
+    public ResultRepository resultRepository;
 
     @Transactional
-    public void saveRemont(Remont remont) {
-        remontRepository.saveAndFlush(remont);
+    public Remont saveRemont(Remont remont) {
+       return remontRepository.saveAndFlush(remont);
     }
 
     @Transactional
@@ -32,7 +32,7 @@ public class RemontService {
 
     @Transactional
     public List<Remont> getByResult(String s) {
-        return remontRepository.getByResult(resultRepository.findByResult(s));
+        return remontRepository.findByResult(resultRepository.findByResult(s));
     }
 
     @Transactional
@@ -41,9 +41,10 @@ public class RemontService {
     }
 
     @Transactional
-    public void changeResult(Long id, Long result) {
+    public Remont changeResult(Long id, Long result) {
         Remont remont = remontRepository.findById(id);
         remont.setResult(resultRepository.findById(result));
+        return remontRepository.saveAndFlush(remont);
     }
 
     @Transactional

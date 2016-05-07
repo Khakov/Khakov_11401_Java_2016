@@ -68,7 +68,7 @@
                                                 - ${remont.getCar().getModel().getModel()} -
                                             </td>
                                             <td>${remont.getType().getType()}</td>
-                                            <td>${remont.getStatus().getStatus()}</td>
+                                            <td>${remont.getResult().getResult()}</td>
                                             <td><a href="/operator/edit_remont/${remont.getId()}"><span
                                                     class="fa fa-edit"></span></a></td>
                                         </tr>

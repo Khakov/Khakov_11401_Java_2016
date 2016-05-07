@@ -75,7 +75,8 @@
                                             </td>
                                             <td>
                                                 <form action="/admin/delete_color/${color.getId()}" method ="post">
-                                                   <button type="submit" class="btn btn-danger btn-xs"
+                                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                                    <button type="submit" class="btn btn-danger btn-xs"
                                                            onclick="return confirm('вы уверены, что хотите удалить этот цвет?')">
                                                     <i class="fa fa-trash-o"></i> удалить</button>
                                                 </form>

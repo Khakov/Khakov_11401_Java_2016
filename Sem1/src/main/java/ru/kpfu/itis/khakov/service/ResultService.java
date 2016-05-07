@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class ResultService {
     @Autowired
-    ResultRepository resultRepository;
+    public ResultRepository resultRepository;
 
     @Transactional
     public Result getByName(String s) {

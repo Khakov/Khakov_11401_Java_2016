@@ -17,10 +17,10 @@ import java.util.List;
 @Service
 public class MyCarService {
     @Autowired
-    MyCarRepository myCarRepository;
+    public MyCarRepository myCarRepository;
 
     @Transactional
-    public void saveCar(MyCar myCar, List<Attribute> attributes) {
+    public MyCar saveCar(MyCar myCar, List<Attribute> attributes) {
         myCarRepository.saveAndFlush(myCar);
         List<MyCar> myCars = myCarRepository.findAllByDate(myCar.getDate());
         System.out.println(myCar.getId());
@@ -32,7 +32,7 @@ public class MyCarService {
         }
         System.out.println(myCar.getDate());
         myCar.setAttributes(attributes);
-        myCarRepository.saveAndFlush(myCar);
+       return myCarRepository.saveAndFlush(myCar);
     }
 
     @Transactional
@@ -51,13 +51,13 @@ public class MyCarService {
     }
 
     @Transactional
-    public void changeCar(Long id, String status) {
+    public MyCar changeCar(Long id, String status) {
         Boolean s = true;
         if (status.equals("0"))
             s = false;
         MyCar myCar = myCarRepository.findById(id);
         myCar.setStatus(s);
-        myCarRepository.saveAndFlush(myCar);
+        return myCarRepository.saveAndFlush(myCar);
     }
 @Transactional
     public List<MyCar> getByUser(User user) {

@@ -20,7 +20,7 @@
                         <div class="x_panel">
                             <div class="clearfix"></div>
                             <div class="x_content">
-                                <@form.form commandName="colorForm" acceptCharset="UTF-8" action="/admin/add_color" method="post"
+                                <@form.form commandName="attrForm" acceptCharset="UTF-8" action="/admin/add_attribute" method="post"
                                 class="form-horizontal form-label-left input_mask">
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">имя цвета</label>
@@ -35,7 +35,7 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">описание</label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                             <div>
-                                                <@form.extarea path="description"/>
+                                                <@form.textarea path="description"/>
                                                 <@form.errors path="description" cssStyle="color: red;" />
                                             </div>
                                         </div>
@@ -84,6 +84,7 @@
                                             <td>${attr.getPrice()}</td>
                                             <td>
                                                 <form action="/admin/delete_attribute/${attr.getId()}" method="post">
+                                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                                     <button type="submit" class="btn btn-danger btn-xs"
                                                             onclick="return confirm('вы уверены, что хотите удалить этот тип ремонта?')">
                                                         <i class="fa fa-trash-o"></i> удалить </button></form>

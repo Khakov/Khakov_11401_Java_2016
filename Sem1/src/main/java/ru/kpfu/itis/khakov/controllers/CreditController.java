@@ -39,7 +39,7 @@ public class CreditController {
         if(request.getUserPrincipal()!=null){
             User user = userService.getByLogin(request.getUserPrincipal().getName());
             model.put("user", user);
-            request.setAttribute("creditForm", new CreditForm(user.getFirstName(), user.getId() + ""));
+            request.setAttribute("creditForm", new CreditForm(user.getFirstName(), user.getNumber() + ""));
         }
         else
             request.setAttribute("creditForm", new CreditForm());

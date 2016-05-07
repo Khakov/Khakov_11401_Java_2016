@@ -12,12 +12,15 @@ import javax.validation.constraints.Size;
 public class RegistrationForm {
 
     @NotEmpty(message = "Поле обязательно для заполнения")
+    @Size(max = 20, message = "не больше 20 символов")
     private String firstName;
 
     @NotEmpty(message = "Поле обязательно для заполнения")
+    @Size(max = 20, message = "не больше 20 символов")
     private String lastName;
 
     @NotEmpty(message = "Поле обязательно для заполнения")
+    @Size(max = 20, message = "не больше 20 символов")
     @Email
     private String email;
 
