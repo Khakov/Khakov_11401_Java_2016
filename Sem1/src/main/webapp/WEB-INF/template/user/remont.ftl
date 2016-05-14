@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Желаемое авто</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Производитель</label>
                             <@form.select path ="id" class="form-control">
                                 <#list cars as car>
                                     <@form.option value="${car.getId()}">
@@ -42,7 +42,7 @@
                             <@form.errors path="id" cssStyle="color: red;" />
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Желаемое авто</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">тип ремонта</label>
                             <@form.select path ="type" class="form-control">
                                 <#list types as type>
                                     <@form.option value="${type.getId()}">
@@ -52,7 +52,7 @@
                             <@form.errors path="type" cssStyle="color: red;" />
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Желаемое авто</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">описание</label>
                             <@form.textarea path ="description" class="form-control" placeholder = "Описание проблемы"/>
                             <@form.errors path="description" cssStyle="color: red;" />
                         </div>

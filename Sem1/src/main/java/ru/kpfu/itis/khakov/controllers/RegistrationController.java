@@ -51,8 +51,14 @@ public class RegistrationController {
             return "registration";
         }
         if(userService.getByLogin(regForm.getEmail()) != null){
-            model.addAttribute("error","User with this email already exist");
+            model.addAttribute("error","Такой пользователь уже существует");
             return "registration";
+        }
+        else {
+            if(!regForm.getPassword().equals(regForm.getConfirmPassword())){
+                model.addAttribute("error","пароли не совпадают!");
+                return "registration";
+            }
         }
         String role = "ROLE_USER";
         User user = new User(regForm.getFirstName(), regForm.getLastName(), regForm.getEmail(),

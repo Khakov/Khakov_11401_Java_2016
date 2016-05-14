@@ -16,12 +16,12 @@ import java.util.List;
 @Service
 public class TestDriveService {
     @Autowired
-    TestDriveRepository testDriveRepository;
+    public TestDriveRepository testDriveRepository;
     @Autowired
-    StatusRepository statusRepository;
+    public StatusRepository statusRepository;
     @Transactional
-    public void saveTestDrive(TestDrive drive){
-        testDriveRepository.saveAndFlush(drive);
+    public TestDrive saveTestDrive(TestDrive drive){
+        return testDriveRepository.saveAndFlush(drive);
     }
     @Transactional
     public List<TestDrive> getByUser(User user) {
@@ -36,10 +36,10 @@ public class TestDriveService {
         return testDriveRepository.findById(id);
     }
     @Transactional
-    public void changeStatus(Long id, Long status, String date) {
+    public TestDrive changeStatus(Long id, Long status, String date) {
         TestDrive drive = testDriveRepository.findById(id);
         drive.setStatus(statusRepository.findById(status));
         drive.setDate(date);
-        testDriveRepository.saveAndFlush(drive);
+        return testDriveRepository.saveAndFlush(drive);
     }
 }

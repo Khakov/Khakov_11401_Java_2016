@@ -14,4 +14,8 @@ public class MainController {
     public String getMainPage() {
         return "main";
     }
+    @RequestMapping(value = "contacts",method = RequestMethod.GET)
+    public String getContactsPage() {
+        return "contacts";
+    }
 }

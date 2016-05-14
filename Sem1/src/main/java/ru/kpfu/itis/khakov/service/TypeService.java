@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class TypeService {
     @Autowired
-    TypeRepository typeRepository;
+    public TypeRepository typeRepository;
 
     @Transactional
     public List<Type> getAllTypes() {
@@ -32,9 +32,9 @@ public class TypeService {
     }
 
     @Transactional
-    public void add(String type) {
+    public Type add(String type) {
         Type type1 = new Type();
         type1.setType(type);
-        typeRepository.saveAndFlush(type1);
+        return typeRepository.saveAndFlush(type1);
     }
 }

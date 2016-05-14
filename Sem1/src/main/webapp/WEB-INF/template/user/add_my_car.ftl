@@ -7,7 +7,7 @@
             <div class="col-md-6 col-xs-12">
                 <div class="x_panel" style="margin-left: 100pt; margin-top: 50pt">
                     <div class="x_title">
-                        <h2>Заявка на кредит</h2>
+                        <h2>Предзаказ авто</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -19,7 +19,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Желаемый цвет авто</label>
                                 <select name="color" class="form-control">
                                     <#list colors as color>
-                                        <option value="${color.getId()}">
+                                        <option value="${color.getId()}" style="background-color: ${color.getColorEn()}">
                                         ${color.getColorRu()}</option>
                                     </#list>
                                 </select>

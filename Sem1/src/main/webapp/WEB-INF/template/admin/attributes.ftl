@@ -77,7 +77,7 @@
                                     <tbody>
                                         <#list attributes as attr>
                                         <tr>
-                                            <td>${attr.getAttribute()}
+                                            <td>${attr.getName()}
                                             </td>
                                             <td >${attr.getDescription()}
                                             </td>

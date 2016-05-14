@@ -10,6 +10,18 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/applicationContext.xml</param-value>
     </context-param>
+
+    <!--servlet for gwt-->
+    <servlet>
+        <servlet-name>gwtServlet</servlet-name>
+        <servlet-class>org.spring4gwt.server.SpringGwtRemoteServiceServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>gwtServlet</servlet-name>
+        <url-pattern>/search/</url-pattern>
+    </servlet-mapping>
+    <!--servlet for Spring-->
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -40,9 +52,9 @@
     </filter-mapping>
     <error-page>
         <error-code>404</error-code>
-    <location>/error404</location>
+        <location>/error404</location>
     </error-page>
-     <!--Spring Security-->
+    <!--Spring Security-->
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
