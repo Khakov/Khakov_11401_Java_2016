@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="368.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kpfu.itis.khakov.controllers.AttributeController">
+   <children>
+      <TableView fx:id="attributes" layoutX="44.0" layoutY="59.0" prefHeight="368.0" prefWidth="328.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="name" prefWidth="116.0" text="Имя аттрибута" />
+          <TableColumn fx:id="description" prefWidth="167.0" text="описание" />
+            <TableColumn fx:id="price" prefWidth="95.0" text="цена" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

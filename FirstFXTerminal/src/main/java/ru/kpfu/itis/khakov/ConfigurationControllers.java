@@ -11,7 +11,10 @@ import java.io.InputStream;
 @Configuration
 public class ConfigurationControllers {
 
-   
+   @Bean(name = "catalogLoader")
+    public FXMLLoader getCatalogLoader() {
+        return loadView("Catalog.fxml");
+    }
     @Bean(name = "mainLoader")
     public FXMLLoader getMenuLoader() {
         return loadView("Main.fxml");
