@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kpfu.itis.khakov.controllers.LoginController">
+   <children>
+      <Label layoutX="221.0" layoutY="79.0" prefHeight="52.0" prefWidth="133.0" text="Log in" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font size="45.0" />
+         </font>
+      </Label>
+      <Label layoutX="153.0" layoutY="168.0" prefHeight="17.0" prefWidth="60.0" text="login" />
+      <Label layoutX="158.0" layoutY="200.0" text="password" />
+      <PasswordField fx:id="password" layoutX="213.0" layoutY="196.0" />
+      <TextField fx:id="login" layoutX="213.0" layoutY="164.0" />
+      <Button layoutX="262.0" layoutY="236.0" mnemonicParsing="false" onAction="#handleLogin" text="log in" />
+   </children>
+</AnchorPane>

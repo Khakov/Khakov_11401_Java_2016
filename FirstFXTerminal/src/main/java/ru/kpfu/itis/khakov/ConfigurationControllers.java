@@ -16,7 +16,10 @@ public class ConfigurationControllers {
     public FXMLLoader getMenuLoader() {
         return loadView("Main.fxml");
     }
-   
+   @Bean(name = "loginLoader")
+    public FXMLLoader getLoginLoader() {
+        return loadView("Login.fxml");
+    }
     protected FXMLLoader loadView(String url) {
         InputStream fxmlStream = null;
         try {

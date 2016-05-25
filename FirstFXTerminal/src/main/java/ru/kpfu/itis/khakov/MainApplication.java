@@ -30,7 +30,10 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
 
     @Qualifier("mainLoader")
     @Autowired
-   
+    private FXMLLoader menuLoader;
+    @Qualifier("loginLoader")
+    @Autowired
+    private FXMLLoader loginLoader;
     private User user = null;
     private MenuController menuController = null;
 
