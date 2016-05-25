@@ -1,12 +1,14 @@
 package ru.kpfu.itis.khakov;
 
 import ru.kpfu.itis.khakov.entity.Attribute;
+import ru.kpfu.itis.khakov.entity.Car;
 import ru.kpfu.itis.khakov.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -27,7 +29,12 @@ import java.util.List;
 public class MainApplication extends AbstractJavaFxApplicationSupport {
 
     CurrentPage currentPage = CurrentPage.LOGIN;
-
+	@Qualifier("creditLoader")
+    @Autowired
+    private FXMLLoader creditLoader;
+	@Qualifier("attributeLoader")
+    @Autowired
+    private FXMLLoader attributeLoader;
     @Qualifier("mainLoader")
     @Autowired
     private FXMLLoader menuLoader;
@@ -39,6 +46,7 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
+	private ObservableList<Car> cars = FXCollections.observableArrayList();
 	private ObservableList<Attribute> attributes = FXCollections.observableArrayList();
 
 
@@ -74,7 +82,15 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
     }
 
     public void showCredit() {
-        
+        if (user == null)
+            showLogin();
+        else {
+            currentPage = CurrentPage.CREDIT;
+            AnchorPane creditPage = (AnchorPane) creditLoader.getRoot();
+            rootLayout.setCenter(creditPage);
+            CreditController controller = creditLoader.getController();
+            controller.setMainApp(this);
+        }
     }
 
     public void showCatalog() {
