@@ -11,27 +11,35 @@ import java.io.InputStream;
 @Configuration
 public class ConfigurationControllers {
 
-	@Bean(name = "testLoader")
+    @Bean(name = "creditHistoryLoader")
+    public FXMLLoader getCreditHistoryLoader() {
+        return loadView("HistoryCredit.fxml");
+    }
+    @Bean(name = "resultLoader")
+    public FXMLLoader getResultLoader() {
+        return loadView("Result.fxml");
+    }
+    @Bean(name = "testLoader")
     public FXMLLoader getTesttLoader() {
         return loadView("Test_Drive.fxml");
     }
-   @Bean(name = "catalogLoader")
-    public FXMLLoader getCatalogLoader() {
-        return loadView("Catalog.fxml");
+    @Bean(name = "loginLoader")
+    public FXMLLoader getLoginLoader() {
+        return loadView("Login.fxml");
     }
     @Bean(name = "mainLoader")
     public FXMLLoader getMenuLoader() {
         return loadView("Main.fxml");
     }
-   @Bean(name = "loginLoader")
-    public FXMLLoader getLoginLoader() {
-        return loadView("Login.fxml");
-    }
-	@Bean(name = "creditLoader")
+    @Bean(name = "creditLoader")
     public FXMLLoader getCreditLoader() {
         return loadView("Credit.fxml");
     }
-	@Bean(name = "attributeLoader")
+    @Bean(name = "catalogLoader")
+    public FXMLLoader getCatalogLoader() {
+        return loadView("Catalog.fxml");
+    }
+    @Bean(name = "attributeLoader")
     public FXMLLoader getAttributeLoader() {
         return loadView("Attributes.fxml");
     }

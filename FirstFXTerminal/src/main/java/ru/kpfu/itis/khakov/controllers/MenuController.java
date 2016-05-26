@@ -4,7 +4,7 @@ import ru.kpfu.itis.khakov.MainApplication;
 import javafx.fxml.FXML;
 
 /**
- * Created by Rus on 20.05.2016.
+ * Created by Rus on 25.05.2016.
  */
 public class MenuController {
     private MainApplication mainApp;

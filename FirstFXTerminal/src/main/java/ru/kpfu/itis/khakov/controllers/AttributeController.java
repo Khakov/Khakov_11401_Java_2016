@@ -10,7 +10,7 @@ import javafx.scene.control.TableView;
 
 
 /**
- * Created by Rus on 25.05.2016.
+ * Created by Rus on 23.05.2016.
  */
 public class AttributeController {
     @FXML

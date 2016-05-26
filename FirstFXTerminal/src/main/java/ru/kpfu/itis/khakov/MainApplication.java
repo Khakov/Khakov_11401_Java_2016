@@ -29,30 +29,37 @@ import java.util.List;
 public class MainApplication extends AbstractJavaFxApplicationSupport {
 
     CurrentPage currentPage = CurrentPage.LOGIN;
-	@Qualifier("creditLoader")
+    @Qualifier("creditHistoryLoader")
     @Autowired
-    private FXMLLoader creditLoader;
-	@Qualifier("attributeLoader")
+    private FXMLLoader creditHistoryLoader;
+    @Qualifier("testLoader")
     @Autowired
-    private FXMLLoader attributeLoader;
-    @Qualifier("mainLoader")
+    private FXMLLoader testLoader;
+    @Qualifier("resultLoader")
     @Autowired
-    private FXMLLoader menuLoader;
+    private FXMLLoader resultLoader;
     @Qualifier("loginLoader")
     @Autowired
     private FXMLLoader loginLoader;
-	@Qualifier("testLoader")
+    @Qualifier("catalogLoader")
     @Autowired
-    private FXMLLoader testLoader;
-	
+    private FXMLLoader catalogLoader;
+    @Qualifier("mainLoader")
+    @Autowired
+    private FXMLLoader menuLoader;
+    @Qualifier("creditLoader")
+    @Autowired
+    private FXMLLoader creditLoader;
+    @Qualifier("attributeLoader")
+    @Autowired
+    private FXMLLoader attributeLoader;
     private User user = null;
     private MenuController menuController = null;
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-	private ObservableList<Car> cars = FXCollections.observableArrayList();
-	private ObservableList<Attribute> attributes = FXCollections.observableArrayList();
-
+    private ObservableList<Car> cars = FXCollections.observableArrayList();
+    private ObservableList<Attribute> attributes = FXCollections.observableArrayList();
 
     @Override
     public void start(Stage primaryStage) {
@@ -82,7 +89,7 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
         AnchorPane loginPage = (AnchorPane) loginLoader.getRoot();
         rootLayout.setCenter(loginPage);
         LoginController controller = loginLoader.getController();
-        controller.setMainApp(this)
+        controller.setMainApp(this);
     }
 
     public void showCredit() {
@@ -97,6 +104,13 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
         }
     }
 
+    public void showCatalog() {
+        currentPage = CurrentPage.CATALOG;
+        CatalogController controller = catalogLoader.getController();
+        controller.setMainApp(this);
+        AnchorPane creditPage = (AnchorPane) catalogLoader.getRoot();
+        rootLayout.setCenter(creditPage);
+    }
     public void showTest() {
         currentPage = CurrentPage.TEST;
         AnchorPane testPage = (AnchorPane) testLoader.getRoot();
@@ -197,7 +211,6 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
         return attributes;
     }
 
-
     public CurrentPage getCurrentPage() {
         return currentPage;
     }
@@ -205,33 +218,20 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
     public MenuController getMenuController() {
         return menuController;
     }
-	private void initAttributes() {
-        if (attributes.size() == 0) {
-            try {
-                RestTemplate restTemplate = new RestTemplate();
-                String url = "http://localhost:8080/rest/attributes";
-                ObjectMapper objectMapper = new ObjectMapper();
-                String json = restTemplate.getForEntity(url, String.class).getBody();
-                List<Attribute> attributeList = objectMapper.readValue(json,
-                        objectMapper.getTypeFactory().constructCollectionType(List.class, Attribute.class));
-                attributes.addAll(attributeList);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ResourceAccessException e) {
-                showMessage();
-            }
-        }
-    }
-    private void showMessage(){
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.initOwner(getPrimaryStage());
-        alert.setTitle("Нет соединения с сервером");
-        alert.setContentText("Внимание!Ошибка соединения с сервером!");
-        alert.showAndWait();
-        showLogin();
-    }
 
     public static void main(String[] args) {
         launchApp(MainApplication.class, args);
+    }
+
+    public void showCreditHistory() {
+        if (user == null)
+            showLogin();
+        else {
+            currentPage = CurrentPage.HISTORY;
+            AnchorPane creditPage = (AnchorPane) creditHistoryLoader.getRoot();
+            rootLayout.setCenter(creditPage);
+            HistoryCredit controller = creditHistoryLoader.getController();
+            controller.setMainApp(this);
+        }
     }
 }
