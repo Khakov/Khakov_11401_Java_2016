@@ -41,6 +41,10 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
     @Qualifier("loginLoader")
     @Autowired
     private FXMLLoader loginLoader;
+	@Qualifier("testLoader")
+    @Autowired
+    private FXMLLoader testLoader;
+	
     private User user = null;
     private MenuController menuController = null;
 
@@ -93,17 +97,14 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
         }
     }
 
-    public void showCatalog() {
-         currentPage = CurrentPage.CATALOG;
-        CatalogController controller = catalogLoader.getController();
-        controller.setMainApp(this);
-        AnchorPane creditPage = (AnchorPane) catalogLoader.getRoot();
-        rootLayout.setCenter(creditPage);
-    }
     public void showTest() {
-       
+        currentPage = CurrentPage.TEST;
+        AnchorPane testPage = (AnchorPane) testLoader.getRoot();
+        rootLayout.setCenter(testPage);
+        TestDriveController controller = testLoader.getController();
+        controller.setMainApp(this);
     }
-    public void showAttributes() {
+    public void showAttributes(Car car) {
         // Загружаем fxml-файл и создаём новую сцену
         // для всплывающего диалогового окна.
         AnchorPane page = (AnchorPane) attributeLoader.getRoot();
@@ -126,12 +127,61 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
     }
 
     public void showResult() {
-        
+        AnchorPane resultLoader = (AnchorPane) this.resultLoader.getRoot();
+        rootLayout.setCenter(resultLoader);
     }
 
+    public void initCars() {
+        if (cars.size() == 0) {
+            try {
+                RestTemplate restTemplate = new RestTemplate();
+                String url = "http://localhost:8080/rest/cars";
+                ObjectMapper objectMapper = new ObjectMapper();
+                String json = restTemplate.getForEntity(url, String.class).getBody();
+                List<Car> carsList = objectMapper.readValue(json,
+                        objectMapper.getTypeFactory().constructCollectionType(List.class, Car.class));
+                cars.addAll(carsList);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ResourceAccessException e) {
+                showMessage();
+            }
+        }
+    }
+
+    private void initAttributes() {
+        if (attributes.size() == 0) {
+            try {
+                RestTemplate restTemplate = new RestTemplate();
+                String url = "http://localhost:8080/rest/attributes";
+                ObjectMapper objectMapper = new ObjectMapper();
+                String json = restTemplate.getForEntity(url, String.class).getBody();
+                List<Attribute> attributeList = objectMapper.readValue(json,
+                        objectMapper.getTypeFactory().constructCollectionType(List.class, Attribute.class));
+                attributes.addAll(attributeList);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ResourceAccessException e) {
+                showMessage();
+            }
+        }
+    }
+    private void showMessage(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.initOwner(getPrimaryStage());
+        alert.setTitle("Нет соединения с сервером");
+        alert.setContentText("Внимание!Ошибка соединения с сервером!");
+        alert.showAndWait();
+        showLogin();
+    }
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    public ObservableList<Car> getCars() {
+        initCars();
+        return cars;
     }
 
     public User getUser() {
@@ -140,6 +190,11 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public ObservableList<Attribute> getAttributes() {
+        initAttributes();
+        return attributes;
     }
 
 

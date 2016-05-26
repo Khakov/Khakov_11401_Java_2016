@@ -11,6 +11,10 @@ import java.io.InputStream;
 @Configuration
 public class ConfigurationControllers {
 
+	@Bean(name = "testLoader")
+    public FXMLLoader getTesttLoader() {
+        return loadView("Test_Drive.fxml");
+    }
    @Bean(name = "catalogLoader")
     public FXMLLoader getCatalogLoader() {
         return loadView("Catalog.fxml");
@@ -22,6 +26,14 @@ public class ConfigurationControllers {
    @Bean(name = "loginLoader")
     public FXMLLoader getLoginLoader() {
         return loadView("Login.fxml");
+    }
+	@Bean(name = "creditLoader")
+    public FXMLLoader getCreditLoader() {
+        return loadView("Credit.fxml");
+    }
+	@Bean(name = "attributeLoader")
+    public FXMLLoader getAttributeLoader() {
+        return loadView("Attributes.fxml");
     }
     protected FXMLLoader loadView(String url) {
         InputStream fxmlStream = null;
