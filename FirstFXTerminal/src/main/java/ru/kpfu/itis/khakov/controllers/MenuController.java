@@ -1,5 +1,6 @@
 package ru.kpfu.itis.khakov.controllers;
 
+import javafx.scene.control.MenuItem;
 import ru.kpfu.itis.khakov.MainApplication;
 import javafx.fxml.FXML;
 
@@ -13,8 +14,8 @@ public class MenuController {
         this.mainApp = mainApp;
     }
 
-//    @FXML
-//    MenuItem loginItem;
+    @FXML
+    MenuItem loginItem;
     @FXML
     private void handleCredit() {
         if (mainApp.getCurrentPage() != CurrentPage.CREDIT) {
@@ -46,8 +47,14 @@ public class MenuController {
             mainApp.showCreditHistory();
         }
     }
+    @FXML
+    private void handleHistoryTest(){
+        if(mainApp.getCurrentPage() != CurrentPage.HISTORY){
+            mainApp.showTestHistory();
+        }
+    }
 
     public void setLogin(String login) {
-
+        loginItem.setText(login);
     }
 }

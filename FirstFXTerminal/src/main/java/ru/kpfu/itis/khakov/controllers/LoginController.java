@@ -55,6 +55,7 @@ public class LoginController {
             if (json!=null) {
                 user = objectMapper.readValue(json, User.class);
                 mainApp.setUser(user);
+                mainApp.getUser().setPassword(password.getText());
                 mainApp.showCatalog();
                 mainApp.getMenuController().setLogin("log out");
             }

@@ -11,11 +11,11 @@
         <menus>
           <Menu mnemonicParsing="false" text="login">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#handleLogin" text="Login" />
+                  <MenuItem fx:id="loginItem" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
                </items></Menu>
           <Menu mnemonicParsing="false" text="заявки">
             <items>
-              <MenuItem mnemonicParsing="false" text="ремонт" />
+              <MenuItem mnemonicParsing="false" onAction="#handleTest" text="тест драйв" />
                   <MenuItem mnemonicParsing="false" onAction="#handleCredit" text="заявка кредит" />
                   <MenuItem mnemonicParsing="false" text="предзаказ" />
             </items>

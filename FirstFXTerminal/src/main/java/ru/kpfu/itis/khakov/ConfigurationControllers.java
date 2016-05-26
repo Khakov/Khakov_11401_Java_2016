@@ -10,7 +10,10 @@ import java.io.InputStream;
 
 @Configuration
 public class ConfigurationControllers {
-
+    @Bean(name = "testHistoryLoader")
+    public FXMLLoader getTestHistoryLoader() {
+        return loadView("HistoryTest.fxml");
+    }
     @Bean(name = "creditHistoryLoader")
     public FXMLLoader getCreditHistoryLoader() {
         return loadView("HistoryCredit.fxml");

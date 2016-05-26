@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kpfu.itis.khakov.controllers.HistoryTest">
+    <children>
+        <TableView fx:id="tableCars" layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columns>
+                <TableColumn fx:id="name" prefWidth="115.0" text="Имя" />
+                <TableColumn fx:id="number" prefWidth="140.0" text="номер" />
+                <TableColumn fx:id="car" prefWidth="142.0" text="машина" />
+                <TableColumn fx:id="date" prefWidth="86.0" text="желаемая дата" />
+                <TableColumn fx:id="status" maxWidth="122.0" prefWidth="96.0" text="статус " />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

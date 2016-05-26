@@ -29,6 +29,9 @@ import java.util.List;
 public class MainApplication extends AbstractJavaFxApplicationSupport {
 
     CurrentPage currentPage = CurrentPage.LOGIN;
+    @Qualifier("testHistoryLoader")
+    @Autowired
+    private FXMLLoader testHistoryLoader;
     @Qualifier("creditHistoryLoader")
     @Autowired
     private FXMLLoader creditHistoryLoader;
@@ -231,6 +234,18 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
             AnchorPane creditPage = (AnchorPane) creditHistoryLoader.getRoot();
             rootLayout.setCenter(creditPage);
             HistoryCredit controller = creditHistoryLoader.getController();
+            controller.setMainApp(this);
+        }
+    }
+
+    public void showTestHistory() {
+        if (user == null)
+            showLogin();
+        else {
+            currentPage = CurrentPage.HISTORY;
+            AnchorPane testPage = (AnchorPane) testHistoryLoader.getRoot();
+            rootLayout.setCenter(testPage);
+            HistoryTest controller = testHistoryLoader.getController();
             controller.setMainApp(this);
         }
     }
