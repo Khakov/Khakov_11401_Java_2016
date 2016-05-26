@@ -92,7 +92,7 @@ public class AdminController {
         CarManufacture manufacture = manufactureService.getById(Long.valueOf(form.getManufacture()));
         Model carModel = modelService.getById(Long.valueOf(form.getModel()));
         carService.editCar(car, manufacture, carModel, form.getPrice(), Double.parseDouble(form.getKof()));
-        return "redirect:/cars";
+        return "redirect:/admin/cars";
     }
 
     @RequestMapping(value = "/add_car", method = RequestMethod.GET)

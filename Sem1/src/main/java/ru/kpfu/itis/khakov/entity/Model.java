@@ -1,5 +1,8 @@
 package ru.kpfu.itis.khakov.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 /**
@@ -10,6 +13,7 @@ import javax.persistence.*;
 public class Model {
     private Long id;
     private String model;
+    @JsonManagedReference
     Motor motor;
 
     @Id

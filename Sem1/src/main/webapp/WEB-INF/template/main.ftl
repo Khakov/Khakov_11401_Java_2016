@@ -5,7 +5,7 @@
     <div class="">
         <div class="row">
             <h1>Добро пожаловать на наш сайт!</h1>
-            <img src="../resource/image/001.jpg">
+            <img src="../resource/image/001.jpg" style = "height: 100vh; width: 100vw;">
         </div>
     </div>
 </div>

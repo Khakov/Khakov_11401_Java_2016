@@ -25,4 +25,5 @@ public interface UserRepository extends JpaRepository<User,Long> {
     List<User> findAllByOrderByEnabledDesc();
     List<User> findAllByOrderByRoleAsc();
     List<User> findAllByOrderByRoleDesc();
+    List<User> findByFirstNameContainingOrLastNameContaining(String name, String name2);
 }

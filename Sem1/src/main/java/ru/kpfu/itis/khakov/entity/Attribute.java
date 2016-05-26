@@ -1,5 +1,7 @@
 package ru.kpfu.itis.khakov.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class Attribute {
     private String name;
     private String description;
     private int price;
+    @JsonBackReference
     private List<MyCar> cars;
 
     @Id

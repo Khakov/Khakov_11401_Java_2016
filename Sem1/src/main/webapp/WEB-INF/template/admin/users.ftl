@@ -15,7 +15,7 @@
                     <div class="title_right">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
+                                <input id="Search" type="text" class="form-control" placeholder="Search for..." oninput="Searching();">
                   <span class="input-group-btn">
                             <button class="btn btn-default" type="button">Поиск!</button>
                         </span>
@@ -155,6 +155,10 @@
         $("#is_baned").html("<i class='fa fa-sort'></i>not baned");
         $("#role_name").html("<i class='fa fa-sort'></i>role");
         Search("mail" + val_1);
+    };
+    Searching = function(){
+        val_1 = $("#Search").val();
+        Search("2" + val_1);
     };
     OrderByEnable = function(){
         val_1 = $("#id_enable").val();

@@ -100,4 +100,8 @@ public class UserService {
     public List<User> OrderByEnableAsc() {
         return userRepository.findAllByOrderByEnabledAsc();
     }
+    @Transactional
+    public List<User> selectByName(String name) {
+        return userRepository.findByFirstNameContainingOrLastNameContaining(name, name);
+    }
 }

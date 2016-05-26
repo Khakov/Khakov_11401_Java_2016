@@ -1,5 +1,7 @@
 package ru.kpfu.itis.khakov.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
@@ -14,6 +16,7 @@ public class MyCar {
     private Color color;
     private User user;
     private Car car;
+    @JsonManagedReference
     private List<Attribute> attributes;
     private Date date;
     private Boolean status;

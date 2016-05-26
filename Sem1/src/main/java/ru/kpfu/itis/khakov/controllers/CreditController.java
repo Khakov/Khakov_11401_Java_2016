@@ -43,6 +43,9 @@ public class CreditController {
         }
         else
             request.setAttribute("creditForm", new CreditForm());
+        if(request.getSession().getAttribute("car")!=null){
+            model.put("car_id", request.getSession().getAttribute("car"));
+        }
         model.put("cars", carService.getAllCar());
         return "user/credit";
 }

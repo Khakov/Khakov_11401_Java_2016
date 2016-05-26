@@ -4,7 +4,7 @@
 <div id="wrapper">
     <div id="login" class="animate form">
         <section class="login_content">
-            <form id="loginForm" action="/j_spring_security_check" method="post">
+            <form id="loginForm" action="j_spring_security_check" method="post">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h1>Login Form</h1>
                 <div>
@@ -14,8 +14,8 @@
                     <input type="password" class="form-control" placeholder="Password" name="j_password"/>
                 </div>
                 <div>
-                    <input name="remember_me" type="checkbox"/>
-                    <label for="remember_me" class="inline">Запомнить меня</label>
+                    <input name="remember-me" type="checkbox"/>
+                    <label for="remember-me" class="inline">Запомнить меня</label>
                 </div>
                 <div>
                     <input type="submit" class="btn btn-default submit" value="Log in"/>

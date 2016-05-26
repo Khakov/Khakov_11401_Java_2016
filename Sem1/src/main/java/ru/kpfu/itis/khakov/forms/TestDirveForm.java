@@ -19,7 +19,7 @@ public class TestDirveForm {
     @NotEmpty(message = "Поле обязательно для заполнения")
     @Size(max = 50, message = "не больше 50 символов")
     private String id;
-    @Pattern(regexp = "(\\d{2})/(\\d{2})/(19|20)(\\d{2})", message = "неправильно введена дата")
+    @Pattern(regexp = "(\\d{2})\\.(\\d{2})\\.(19|20)(\\d{2})", message = "неправильно введена дата")
     @Size(max = 20, message = "не больше 20 символов")
     private String date;
 

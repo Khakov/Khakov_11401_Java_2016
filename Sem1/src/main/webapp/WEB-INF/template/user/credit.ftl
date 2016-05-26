@@ -32,10 +32,17 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Желаемое авто</label>
                                 <@form.select path ="id" class="form-control">
                                     <#list cars as car>
-                                    <@form.option value="${car.getId()}">
+                                    <#if (car_id?? && car.getId() = car_id.getId())>
+                                    <@form.option value= "${car.getId()}" selected = "selected">
                                         ${car.getManufacture().getManufacture()} ${car.getModel().getModel()} -
                                         ${car.getModel().getMotor().getType()}
                                     </@form.option>
+                                    <#else>
+                                        <@form.option value="${car.getId()}">
+                                        ${car.getManufacture().getManufacture()} ${car.getModel().getModel()} -
+                                        ${car.getModel().getMotor().getType()}
+                                        </@form.option>
+                                    </#if>
                                     </#list>
                                 </@form.select>
                                 <@form.errors path="id" cssStyle="color: red;" />

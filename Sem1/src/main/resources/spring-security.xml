@@ -8,7 +8,7 @@
                     http://www.springframework.org/schema/security/spring-security-3.2.xsd">
     <http pattern="/resource/**" security="none"/>
     <http auto-config="true" use-expressions="true">
-        <csrf/>
+        <!--<csrf/>-->
         <intercept-url pattern="/add_my_car/**" access="isAuthenticated()"/>
         <intercept-url pattern="/document/**" access="permitAll()"/>
         <intercept-url pattern="/users/**" access="hasRole('ROLE_ADMIN')"/>
@@ -20,6 +20,7 @@
         <intercept-url pattern="/edit_user/**" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/profile/**" access="isAuthenticated()"/>
+        <intercept-url pattern="/rest/api/**" access="hasAnyRole('ROLE_ADMIN','ROLE_OPERATOR','ROLE_USER')" />
         <form-login
                 login-page="/login"
                 authentication-failure-url="/login?error=true"

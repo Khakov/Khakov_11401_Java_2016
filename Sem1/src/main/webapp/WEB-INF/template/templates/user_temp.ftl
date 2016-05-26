@@ -46,7 +46,7 @@
                             </li>
                         </#if>
                             <#if user.getRole()=="ROLE_OPERATOR">
-                                <li class=""><a href="/operator"><i class="fa fa-sign-out pull-right"></i> operator</a>
+                                <li class=""><a href="/operator/credits"><i class="fa fa-sign-out pull-right"></i> operator</a>
                                 </li>
                             </#if>
                         </#if>

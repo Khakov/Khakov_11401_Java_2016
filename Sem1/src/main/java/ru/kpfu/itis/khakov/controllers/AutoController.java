@@ -66,6 +66,7 @@ public class AutoController {
         model.put("attributes", attributes.getAll());
         model.put("car", car);
         model.put("length", pageService.getByCar(car).size());
+        request.getSession().setAttribute("car", car);
         return "user/car";
     }
 
@@ -77,6 +78,9 @@ public class AutoController {
             model.put("user", user);
             form.setFirstName(user.getFirstName());
             form.setNumber(user.getNumber());
+        }
+        if(request.getSession().getAttribute("car")!=null){
+            model.put("car_id", request.getSession().getAttribute("car"));
         }
         request.setAttribute("driveForm", form);
         model.put("cars", carService.getAllCar());
@@ -116,6 +120,9 @@ public class AutoController {
             form.setNumber(user.getNumber());
         }
         request.setAttribute("remontForm", form);
+        if(request.getSession().getAttribute("car")!=null){
+            model.put("car_id", request.getSession().getAttribute("car"));
+        }
         model.put("cars", carService.getAllCar());
         model.put("types", typeService.getAllTypes());
         return "user/remont";
@@ -149,6 +156,9 @@ public class AutoController {
         if (request.getUserPrincipal() != null) {
             User user = userService.getByLogin(request.getUserPrincipal().getName());
             model.put("user", user);
+        }
+        if(request.getSession().getAttribute("car")!=null){
+            model.put("car_id", request.getSession().getAttribute("car"));
         }
         model.put("cars",carService.getAllCar());
         model.put("attributes", attributesService.getAll());

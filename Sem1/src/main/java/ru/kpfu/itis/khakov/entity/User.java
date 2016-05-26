@@ -1,5 +1,6 @@
 package ru.kpfu.itis.khakov.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -93,6 +94,7 @@ public class User implements UserDetails {
         this.login = login;
     }
     @Transient
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
             grantedAuthorities.add(new SimpleGrantedAuthority(this.getRole()));
@@ -117,18 +119,22 @@ public class User implements UserDetails {
     }
 
     @Transient
+    @JsonIgnore
     public String getUsername() {
         return this.login;
     }
     @Transient
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
     @Transient
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
     @Transient
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }

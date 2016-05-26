@@ -58,20 +58,24 @@ public class UserController {
     @RequestMapping(value="/user", method = RequestMethod.GET)
     @ResponseBody List<User> getUser(@RequestParam("q") String q){
         List<User> users = userService.getAllUsers();
-        if(q.contains("0")){
-            if(q.startsWith("ma")) users = userService.OrderByLoginAsc();
-            if(q.startsWith("fn")) users = userService.OrderByFirstNameAsc();
-            if(q.startsWith("ln"))users = userService.OrderByLastNameAsc();
-            if(q.startsWith("ro")) users = userService.OrderByRoleAsc();
-            if(q.startsWith("en")) users = userService.OrderByEnableAsc();
+        if(q.startsWith("2")){
+            users = userService.selectByName(q.substring(1));
         }
-        else{
-            if(q.startsWith("ma")) users = userService.OrderByLoginDesc();
-            if(q.startsWith("fn")) users = userService.OrderByFirstNameDesc();
-            if(q.startsWith("ln")) users = userService.OrderByLastNameDesc();
-            if(q.startsWith("ro")) users = userService.OrderByRoleDesc();
-            if(q.startsWith("en")) users = userService.OrderByEnableDesc();
-            if(q.startsWith("id")) users = userService.OrderByIdDesc();
+        else {
+            if (q.contains("0")) {
+                if (q.startsWith("ma")) users = userService.OrderByLoginAsc();
+                if (q.startsWith("fn")) users = userService.OrderByFirstNameAsc();
+                if (q.startsWith("ln")) users = userService.OrderByLastNameAsc();
+                if (q.startsWith("ro")) users = userService.OrderByRoleAsc();
+                if (q.startsWith("en")) users = userService.OrderByEnableAsc();
+            } else {
+                if (q.startsWith("ma")) users = userService.OrderByLoginDesc();
+                if (q.startsWith("fn")) users = userService.OrderByFirstNameDesc();
+                if (q.startsWith("ln")) users = userService.OrderByLastNameDesc();
+                if (q.startsWith("ro")) users = userService.OrderByRoleDesc();
+                if (q.startsWith("en")) users = userService.OrderByEnableDesc();
+                if (q.startsWith("id")) users = userService.OrderByIdDesc();
+            }
         }
         return users;
     }

@@ -1,5 +1,8 @@
 package ru.kpfu.itis.khakov.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,10 +16,12 @@ public class Motor {
     private String type;
     private int horsepower;
     private int consumption;
-private List<Model> models;
+    @JsonBackReference
+    private List<Model> models;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "motor_id_seq")
-    @SequenceGenerator(name="motor_id_seq", sequenceName="motor_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "motor_id_seq", sequenceName = "motor_id_seq", allocationSize = 1)
     @Column(name = "id")
     public Long getId() {
         return id;
