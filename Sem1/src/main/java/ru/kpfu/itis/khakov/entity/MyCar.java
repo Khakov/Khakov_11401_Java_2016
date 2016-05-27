@@ -1,5 +1,6 @@
 package ru.kpfu.itis.khakov.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.List;
 public class MyCar {
     private Long id;
     private Color color;
+    @JsonIgnore
     private User user;
     private Car car;
     @JsonManagedReference
