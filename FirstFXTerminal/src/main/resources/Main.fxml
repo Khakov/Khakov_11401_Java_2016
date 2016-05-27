@@ -5,7 +5,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kpfu.itis.khakov.controllers.MenuController">
+<BorderPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: car.jpg;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kpfu.itis.khakov.controllers.MenuController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -22,8 +22,8 @@
           </Menu>
           <Menu mnemonicParsing="false" text="история">
             <items>
-                  <MenuItem mnemonicParsing="false" text="предзаказ" />
-                  <MenuItem mnemonicParsing="false" text="тест драйв" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleHistoryCar" text="предзаказ" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleHistoryTest" text="тест драйв" />
               <MenuItem mnemonicParsing="false" onAction="#handleHistoryCredit" text="кредит" />
             </items>
           </Menu>

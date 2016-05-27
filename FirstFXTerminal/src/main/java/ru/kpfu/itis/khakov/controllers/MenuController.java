@@ -19,7 +19,7 @@ public class MenuController {
     @FXML
     private void handleCredit() {
         if (mainApp.getCurrentPage() != CurrentPage.CREDIT) {
-            mainApp.showCredit();
+            mainApp.showCredit(null);
         }
     }
 
@@ -38,7 +38,7 @@ public class MenuController {
     @FXML
     private void handleTest(){
         if(mainApp.getCurrentPage() != CurrentPage.TEST){
-            mainApp.showTest();
+            mainApp.showTest(null);
         }
     }
     @FXML
@@ -56,10 +56,15 @@ public class MenuController {
     @FXML
     private void handleCar() {
         if (mainApp.getCurrentPage() != CurrentPage.CAR) {
-            mainApp.showCar();
+            mainApp.showCar(null);
         }
     }
-
+    @FXML
+    private void handleHistoryCar() {
+        if (mainApp.getCurrentPage() != CurrentPage.HISTORYCAR) {
+            mainApp.showHistoryCar();
+        }
+    }
     public void setLogin(String login) {
         loginItem.setText(login);
     }

@@ -28,8 +28,10 @@ import java.util.List;
 @Lazy
 @SpringBootApplication
 public class MainApplication extends AbstractJavaFxApplicationSupport {
-
     CurrentPage currentPage = CurrentPage.LOGIN;
+    @Qualifier("historyCarLoader")
+    @Autowired
+    private FXMLLoader historyCarLoader;
     @Qualifier("carLoader")
     @Autowired
     private FXMLLoader carLoader;
@@ -99,7 +101,7 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
         controller.setMainApp(this);
     }
 
-    public void showCredit() {
+    public void showCredit(Car car) {
         if (user == null)
             showLogin();
         else {
@@ -107,6 +109,7 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
             AnchorPane creditPage = (AnchorPane) creditLoader.getRoot();
             rootLayout.setCenter(creditPage);
             CreditController controller = creditLoader.getController();
+            controller.setCar(car);
             controller.setMainApp(this);
         }
     }
@@ -119,11 +122,12 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
         rootLayout.setCenter(creditPage);
     }
 
-    public void showTest() {
+    public void showTest(Car car) {
         currentPage = CurrentPage.TEST;
         AnchorPane testPage = (AnchorPane) testLoader.getRoot();
         rootLayout.setCenter(testPage);
         TestDriveController controller = testLoader.getController();
+        controller.setCar(car);
         controller.setMainApp(this);
     }
 
@@ -281,7 +285,7 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
         }
     }
 
-    public void showCar() {
+    public void showCar(Car car) {
         if (user == null)
             showLogin();
         else {
@@ -289,6 +293,19 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
             AnchorPane testPage = (AnchorPane) carLoader.getRoot();
             rootLayout.setCenter(testPage);
             CarController controller = carLoader.getController();
+            controller.setCar(car);
+            controller.setMainApp(this);
+        }
+    }
+
+    public void showHistoryCar() {
+        if (user == null)
+            showLogin();
+        else {
+            currentPage = CurrentPage.HISTORYCAR;
+            AnchorPane testPage = (AnchorPane) historyCarLoader.getRoot();
+            rootLayout.setCenter(testPage);
+            CarHistoryController controller = historyCarLoader.getController();
             controller.setMainApp(this);
         }
     }

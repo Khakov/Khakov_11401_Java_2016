@@ -29,6 +29,7 @@ public class CarController {
     @FXML
     private ChoiceBox<Car> cars;
     private MainApplication mainApp;
+    private Car car;
 
     public void setMainApp(MainApplication mainApp) {
 //        attributes = new CheckComboBox<>(mainApp.getAttributes());
@@ -38,6 +39,8 @@ public class CarController {
         cars.setItems(mainApp.getCars());
         colors.setValue(mainApp.getColors().get(0));
         cars.setValue(mainApp.getCars().get(0));
+        if(car!=null)
+            cars.setValue(car);
     }
 
     @FXML
@@ -68,5 +71,9 @@ public class CarController {
             } catch (HttpClientErrorException e) {
                 e.printStackTrace();
             }
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
     }
 }

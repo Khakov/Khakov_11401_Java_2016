@@ -30,6 +30,7 @@ public class TestDriveController {
     @FXML
     private ChoiceBox<Car> cars;
     private MainApplication mainApp;
+    private Car car;
 
     public void setMainApp(MainApplication mainApp) {
         this.mainApp = mainApp;
@@ -39,6 +40,8 @@ public class TestDriveController {
             name.setText(mainApp.getUser().getFirstName());
             phone.setText(mainApp.getUser().getNumber());
         }
+        if(car!= null)
+            cars.setValue(car);
     }
 
     @FXML
@@ -85,5 +88,9 @@ public class TestDriveController {
             alert.setContentText(error);
             alert.showAndWait();
         }
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
     }
 }

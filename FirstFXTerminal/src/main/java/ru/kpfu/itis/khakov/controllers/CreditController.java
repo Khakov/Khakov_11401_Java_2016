@@ -28,11 +28,14 @@ public class CreditController {
     private TextField phone;
     @FXML
     private ChoiceBox<Car> cars;
+    private Car car;
     private MainApplication mainApp;
     public void setMainApp(MainApplication mainApp) {
         this.mainApp = mainApp;
         cars.setItems(mainApp.getCars());
         cars.setValue(mainApp.getCars().get(0));
+        if(car!=null)
+            cars.setValue(car);
         if(mainApp.getUser()!= null){
             name.setText(mainApp.getUser().getFirstName());
             phone.setText(mainApp.getUser().getNumber());
@@ -77,5 +80,9 @@ public class CreditController {
             alert.setContentText(error);
             alert.showAndWait();
         }
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
     }
 }

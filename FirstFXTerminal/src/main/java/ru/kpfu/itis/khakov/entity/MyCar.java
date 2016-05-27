@@ -10,7 +10,6 @@ import java.util.List;
 public class MyCar {
     private Long id;
     private Color color;
-    private User user;
     private Car car;
     private List<Attribute> attributes;
     private Date date;
@@ -39,10 +38,6 @@ public class MyCar {
         this.color = color;
     }
 
-    public User getUser() {
-        return user;
-    }
-
     public void setStatus(Boolean status) {
         this.status = status;
     }
@@ -60,10 +55,6 @@ public class MyCar {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public void setCar(Car car) {

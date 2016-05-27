@@ -69,24 +69,27 @@ public class CatalogController {
              mainApp.showAttributes(selectedCar);
         } else {
             // Ничего не выбрано.
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(mainApp.getPrimaryStage());
-            alert.setTitle("No Selection");
-            alert.setHeaderText("No Car Selected");
-            alert.setContentText("Please select a car in the table.");
-            alert.showAndWait();
+           showMessage();
         }
+    }
+    private void showMessage(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.initOwner(mainApp.getPrimaryStage());
+        alert.setTitle("No Selection");
+        alert.setHeaderText("No Car Selected");
+        alert.setContentText("Please select a car in the table.");
+        alert.showAndWait();
     }
     @FXML
     public void handleCredit(){
-
+        mainApp.showCredit(tableCars.getSelectionModel().getSelectedItem());
     }
     @FXML
     public void handleTest(){
-
+        mainApp.showTest(tableCars.getSelectionModel().getSelectedItem());
     }
     @FXML
     public void handleBuy(){
-
+        mainApp.showCar(tableCars.getSelectionModel().getSelectedItem());
     }
 }
