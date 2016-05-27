@@ -17,7 +17,7 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#handleTest" text="тест драйв" />
                   <MenuItem mnemonicParsing="false" onAction="#handleCredit" text="заявка кредит" />
-                  <MenuItem mnemonicParsing="false" text="предзаказ" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleCar" text="предзаказ" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="история">

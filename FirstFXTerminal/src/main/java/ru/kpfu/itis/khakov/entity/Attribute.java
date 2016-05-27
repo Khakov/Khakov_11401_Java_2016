@@ -75,4 +75,9 @@ public class Attribute {
         result = 31 * result + price;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<?import org.controlsfx.control.CheckComboBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kpfu.itis.khakov.controllers.CarController">
+    <children>
+        <Label layoutX="194.0" layoutY="83.0" prefHeight="61.0" prefWidth="240.0" text="Заявка на тест драйв">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+
+        <Label layoutX="120.0" layoutY="157.0" text="желаемое авто" />
+        <ChoiceBox fx:id="cars" layoutX="212.0" layoutY="153.0" prefWidth="150.0" style="-fx-min-width: 50px;" />
+        <Button layoutX="251.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleTestDrive" text="отправить" />
+        <Label layoutX="118.0" layoutY="200.0" text="Желаемый цвет" />
+        <ChoiceBox fx:id="colors" layoutX="212.0" layoutY="196.0" prefWidth="150.0" />
+        <Label layoutX="91.0" layoutY="246.0" text="выберите аттрибуты" />
+        <CheckComboBox fx:id="attributes" layoutX="212.0" layoutY="242.0" prefHeight="25.0" prefWidth="150.0" />
+    </children>
+</AnchorPane>

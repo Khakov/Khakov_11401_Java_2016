@@ -41,7 +41,7 @@ public class LoginController {
                 auth.getBytes(Charset.forName("US-ASCII")));
         String authHeader = "Basic " + new String(encodedAuth);
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:8080/rest/api/login";
+        String url = "http://localhost:8080/rest/login";
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", authHeader); //here is some login and pass like this login:pass
         try {

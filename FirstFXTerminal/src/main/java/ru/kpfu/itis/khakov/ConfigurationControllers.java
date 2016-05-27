@@ -10,6 +10,10 @@ import java.io.InputStream;
 
 @Configuration
 public class ConfigurationControllers {
+    @Bean(name = "carLoader")
+    public FXMLLoader getCarLoader() {
+        return loadView("Car.fxml");
+    }
     @Bean(name = "testHistoryLoader")
     public FXMLLoader getTestHistoryLoader() {
         return loadView("HistoryTest.fxml");

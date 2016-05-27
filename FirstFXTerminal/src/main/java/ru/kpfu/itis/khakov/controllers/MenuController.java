@@ -53,6 +53,12 @@ public class MenuController {
             mainApp.showTestHistory();
         }
     }
+    @FXML
+    private void handleCar() {
+        if (mainApp.getCurrentPage() != CurrentPage.CAR) {
+            mainApp.showCar();
+        }
+    }
 
     public void setLogin(String login) {
         loginItem.setText(login);

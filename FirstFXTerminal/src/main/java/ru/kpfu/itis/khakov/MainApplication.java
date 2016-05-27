@@ -2,6 +2,7 @@ package ru.kpfu.itis.khakov;
 
 import ru.kpfu.itis.khakov.entity.Attribute;
 import ru.kpfu.itis.khakov.entity.Car;
+import ru.kpfu.itis.khakov.entity.Color;
 import ru.kpfu.itis.khakov.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
@@ -29,6 +30,9 @@ import java.util.List;
 public class MainApplication extends AbstractJavaFxApplicationSupport {
 
     CurrentPage currentPage = CurrentPage.LOGIN;
+    @Qualifier("carLoader")
+    @Autowired
+    private FXMLLoader carLoader;
     @Qualifier("testHistoryLoader")
     @Autowired
     private FXMLLoader testHistoryLoader;
@@ -58,9 +62,9 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
     private FXMLLoader attributeLoader;
     private User user = null;
     private MenuController menuController = null;
-
     private Stage primaryStage;
     private BorderPane rootLayout;
+    private ObservableList<Color> colors = FXCollections.observableArrayList();
     private ObservableList<Car> cars = FXCollections.observableArrayList();
     private ObservableList<Attribute> attributes = FXCollections.observableArrayList();
 
@@ -87,7 +91,7 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
 
     public void showLogin() {
         menuController.setLogin("log in");
-        user =null;
+        user = null;
         currentPage = CurrentPage.LOGIN;
         AnchorPane loginPage = (AnchorPane) loginLoader.getRoot();
         rootLayout.setCenter(loginPage);
@@ -114,6 +118,7 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
         AnchorPane creditPage = (AnchorPane) catalogLoader.getRoot();
         rootLayout.setCenter(creditPage);
     }
+
     public void showTest() {
         currentPage = CurrentPage.TEST;
         AnchorPane testPage = (AnchorPane) testLoader.getRoot();
@@ -121,6 +126,7 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
         TestDriveController controller = testLoader.getController();
         controller.setMainApp(this);
     }
+
     public void showAttributes(Car car) {
         // Загружаем fxml-файл и создаём новую сцену
         // для всплывающего диалогового окна.
@@ -183,7 +189,26 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
             }
         }
     }
-    private void showMessage(){
+
+    private void initColors() {
+        if (colors.size() == 0) {
+            try {
+                RestTemplate restTemplate = new RestTemplate();
+                String url = "http://localhost:8080/rest/colors";
+                ObjectMapper objectMapper = new ObjectMapper();
+                String json = restTemplate.getForEntity(url, String.class).getBody();
+                List<Color> colorList = objectMapper.readValue(json,
+                        objectMapper.getTypeFactory().constructCollectionType(List.class, Color.class));
+                colors.addAll(colorList);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ResourceAccessException e) {
+                showMessage();
+            }
+        }
+    }
+
+    private void showMessage() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.initOwner(getPrimaryStage());
         alert.setTitle("Нет соединения с сервером");
@@ -213,6 +238,12 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
         initAttributes();
         return attributes;
     }
+
+    public ObservableList<Color> getColors() {
+        initColors();
+        return colors;
+    }
+
 
     public CurrentPage getCurrentPage() {
         return currentPage;
@@ -246,6 +277,18 @@ public class MainApplication extends AbstractJavaFxApplicationSupport {
             AnchorPane testPage = (AnchorPane) testHistoryLoader.getRoot();
             rootLayout.setCenter(testPage);
             HistoryTest controller = testHistoryLoader.getController();
+            controller.setMainApp(this);
+        }
+    }
+
+    public void showCar() {
+        if (user == null)
+            showLogin();
+        else {
+            currentPage = CurrentPage.CAR;
+            AnchorPane testPage = (AnchorPane) carLoader.getRoot();
+            rootLayout.setCenter(testPage);
+            CarController controller = carLoader.getController();
             controller.setMainApp(this);
         }
     }
